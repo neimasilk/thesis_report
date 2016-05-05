@@ -1,0 +1,83 @@
+%-----------------------------------------------------------------------------%
+\chapter{\babSatu}
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Latar Belakang}
+%-----------------------------------------------------------------------------%
+Data ekspresi gen pada percobaan \textit{microarray} memiliki ciri khas yaitu dimensi fitur gen yang jauh lebih besar dibandingkan dengan sampel pasien yang sedikit dikarenakan oleh mahalnya percobaan dan terbatasnya pasien. Hal ini menyebabkan masalah pada penerapan teknik machine learning untuk pengenalan pola penyakit yang diinginkan. Oleh karena itu, dalam menyederhanakan data ekspresi gen tersebut, dibutuhkan metode seleksi fitur untuk mempermudah melakukan analisa gen dengan menyeleksi gen-gen yang dibutuhkan saja. \citep{yoon2006building}. Menurut penelitian \cite{yoon2006building} dan \cite{bandyopadhyay2014survey} tidak semua gen yang didapat dari percobaan microarray tersebut adalah gen yang informatif, bahkan jumlah ekspresi gen yang informatif untuk kasus yang diinginkan misalnya untuk pengenalan sel kanker, sangat sedikit dibandingkan dengan keseluruhan ekspresi gen yang didapat dalam sebuah eksperimen \citep{bandyopadhyay2014survey}. Data ekspresi gen yang tidak informatif tersebut dapat mengurangi performa  proses pengenalan pola secara signifikan pada teknik \textit{machine learning} yang diterapkan. Akan tetapi, beberapa gen yang informatif berpengaruh secara signifikan terhadap pengenalan pola tersebut. Sebagai contoh, untuk mendiagnosa kanker paru-paru, hanya dibutuhkan sekitar 50 gen saja dari 22 ribu gen yang didapatkan dalam percobaan. Gen-gen yang paling informatif ini disebut dengan Biomarker \citep{belinsky2004gene}. Sehingga, hanya dengan menggunakan data biomarker yang ditemukan, bisa dikenali penyakit yang diderita oleh pasien.\\
+pengetahuan manusia tentang gen sampai saat ini masih terbatas, yaitu ada sekitar 26\% dari keseluruhan gen yang belum diketahui kegunaannya \citep{haggstrom2014diagram}. Oleh karena itu pendekatan teknik machine learning secara unsupervised sering dilakukan untuk analisa pengenalan pola data microarray. Pada penelitian ini, akan dilakukan seleksi fitur terhadap data microarray secara unsupervised learning dengan menggunakan teknik deep learning. Dari hasil seleksi fitur gen tersebut akan diterapkan algoritma supervised learning yang digunakan untuk melakukan evaluasi seberapa baik keakurasian seleksi fitur tersebut dalam pengenalan pola pendeteksian penyakit kanker paru-paru pada sample pasien sakit dan normal. \\
+Untuk teknik seleksi fitur tersebut akan digunakan metode dengan cara melakukan modifikasi algoritma seleksi fitur untuk logistic regression dilakukan oleh \cite{shevade2003simple}. 
+\todo{bagian bawah ini masih ruwet}
+Dikarenakan algoritma seleksi fitur menggunakan logistic regression merupakan bagian dari supervised learning dan linier, maka dianggap kurang cocok untuk data microarray yang fungsinya belum diketahui secara lengkap dan memiliki karakteristik yang kompleks. Dan logistic regression memiliki masalah dalam  mengeliminasi fitur, dikarenakan koefisien bobot ditempatkan disetiap fitur. Oleh karena itu, disini akan diajukan arsitektur deep learning.
+Arsitektur deep learning, yang akan digunakan pada penelitian ini adalah arsitektur Deep Belief Network (DBN). DBN merupakan jaringan Restrictive Boltzmann Machine (RBM) yang dijajarkan. Dimulai dengan memberikan bobot random diantara dua network, yang dapat di latih dengan cara meminimalkan perbedaan antara data asli dengan data rekonstruksinya. Gradien didapatkan dengan chain rule untuk melakukan penurunan error dengan teknik Contrastive Divergence (CD). Untuk dicari bobot (W) dengan maximum likelihood learning  secara greedy per layer-nya (greedy layer wise training) (Hinton, 2006). Pada penelitian ini, untuk mencari perangkingan bobotnya, menggunakan modifikasi dari cara yang digunakan oleh Shevade (Shevade, 2003) dalam teknik seleksi fitur berbasis weight menggunakan Sparse logistic regression (Shevade, 2003). Sehingga teori perankingan weight ini akan dimodifikasi dan digunakan untuk  meranking fiturnya secara multi step yang akan diterapkan pada DBN.
+Tahap selanjutnya fitur yang telah didapatkan pada tahap seleksi fitur, akan digunakan sebagai data untuk penerapan clustering. Algoritma yang akan dipakai adalah : Cluster Affinity Search Technique (CAST) , K-Means Clustering dan Hierarchical Clustering (yeung, 2001). Untuk mengevaluasi dan menganalisa seberapa baik hasil dari percobaan ini, dilakukan dengan menghitung Adjusted Rand Index (ARI) (Hubert, 1985). ARI ini digunakan untuk mengukur mutu cluster dari hasil clustering. ARI menghitung derajat kesesuaian antara dua partisi, yaitu menghitung cluster yang dihasilkan, dibandingkan dengan kriteria eksternal. Nilai ARI berada di antara 0 dan 1. Jika mutu cluster yang dihasilkan memiliki keterpisahan yang baik dibandingkan dengan kriteria luar cluster, maka nilai ARI mendekati 1. Jika sebaliknya, nilai ARI mendekati 0. Untuk mengetahui gen yang dipilih tersebut informatif dan tidak, dilakukan literatur review.
+
+
+
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Perumusan Masalah}
+%-----------------------------------------------------------------------------%
+Dikarenakan karakteristik sedikitnya sampel dan besarnya fitur. Serta tidak lengkapnya informasi kita terhadap gen. Apakah pendekatan unsupervised pada deep learning untuk mencari biomarker dengan perankingan bobot secara multi step cocok dipakai pada data microarray?
+
+$ \frac{1}{|\mathcal{D}|} \mathcal{L} (\theta=\{W,b\}, \mathcal{D}) = \frac{1}{|\mathcal{D}|} \sum_{i=0}^{|\mathcal{D}|} \log(P(Y=y^{(i)}|x^{(i)}, W,b)) \\
+\ell (\theta=\{W,b\}, \mathcal{D}) $
+
+
+%-----------------------------------------------------------------------------%
+\subsection{Definisi Permasalahan}
+%-----------------------------------------------------------------------------%
+\todo{Tuliskan permasalahan yang ingin diselesaikan. Bisa juga
+	berbentuk pertanyaan}
+
+
+%-----------------------------------------------------------------------------%
+\subsection{Batasan Permasalahan}
+%-----------------------------------------------------------------------------%
+\begin{itemize}
+\item Dataset microarray
+\item Data yang digunakan adalah dataset yang sudah dilakukan preprocessing standar dan sudah dinormalisasi.
+\end{itemize}
+
+%-----------------------------------------------------------------------------%
+\section{Tujuan}
+%-----------------------------------------------------------------------------%
+Penelitian ini bertujuan untuk membangun metodologi dalam pencarian Biomarker Gen yang paling penting untuk percobaan microarray. Dengan menghitung bobot ranking gen secara multi step.
+
+%-----------------------------------------------------------------------------%
+\section{Posisi Penelitian}
+%-----------------------------------------------------------------------------%
+\todo{Posisi penelitian Anda jika dilihat secara bersamaan dengan 
+	peneliti-peneliti lainnya. Akan lebih baik lagi jika ikut menyertakan 
+	diagram yang menjelaskan hubungan dan keterkaitan antar 
+	penelitian-penelitian sebelumnya}
+
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Manfaat Penelitian}
+%-----------------------------------------------------------------------------%
+Mendapatkan framework cara perankingan data ekspresi gen menggunakan arsitektur deep learning. Sehingga membantu dalam pencarian biomarker pada penelitian data microarray.
+
+%-----------------------------------------------------------------------------%
+\section{Sistematika Penulisan}
+%-----------------------------------------------------------------------------%
+Sistematika penulisan laporan adalah sebagai berikut:
+\begin{itemize}
+	\item Bab 1 \babSatu \\
+	Berisi gambaran permasalahan dan metodologi apa yang akan diterapakan
+	\item Bab 2 \babDua \\
+	Landasan teori dipakainya metodologi yang akan diterapkan dalam eksperimen
+	\item Bab 3 \babTiga \\
+	Penjelasan detail metodologi yang akan diterapkan dalam penelitian
+	\item Bab 4 \babEmpat \\
+	Pembahasan hasil dari eksperimen
+	\item Bab 5 \kesimpulan \\
+\end{itemize}
+
+\todo{Tambahkan penjelasan singkat mengenai isi masing-masing bab.}
+
