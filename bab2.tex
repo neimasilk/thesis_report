@@ -68,6 +68,42 @@ Setelah proses diatas, diperlukan teknik untuk menseleksi fitur pada data microa
 \todo{tuliskan secara detail tentang dbn}
 
 %-----------------------------------------------------------------------------%
+\section{Maximum Likelihood Estimation}
+%-----------------------------------------------------------------------------%
+\todo{tuliskan secara detail tentang MLE}
+$    \mathcal{L}(\theta\,|\,x_1,\ldots,x_n) = f(x_1,x_2,\ldots,x_n|\theta) = \prod\limits_{i=1}^n f(x_i|\theta)  $
+
+Thus, the extrema of $\mathcal{L}$  are equivalent to the extrema of $ \log \mathcal{L} $ :
+
+   \begin{equation}
+   \log \mathcal{L}(\theta\,|\,x_1,\ldots,x_n) = \sum\limits_{i=1}^n \log f(x_i|\theta) 
+   \end{equation}
+
+From which the maximum likelihood estimator $\hat{\theta}_{\textnormal{MLE}}$  is defined as:
+
+   \begin{equation}
+   \hat{\theta}_{\textnormal{MLE}} = \underset{\theta}{\arg\max} \sum\limits_{i=1}^n \log f(x_i|\theta) 
+   \end{equation}
+
+As an aside, Bayesians will remind us we can generalized into a MAP estimator, given uniform prior $ g(\theta) $ :
+
+  \begin{equation}
+   \underset{\theta}{\arg\max} \sum\limits_{i=1}^n \log f(x_i|\theta)  = \underset{\theta}{\arg\max} \log(f|\theta) = \underset{\theta}{\arg\max} \log(f|\theta) g(\theta) = \hat{\theta}_{\textnormal{MAP}} 
+  \end{equation}
+
+From which optimization and real analysis reminds us of the following equivalence, for all x:
+
+   \begin{equation}
+   \underset{x}{\arg\max} (x)  = \underset{x}{\arg\min} (-x) 
+   \end{equation}
+
+Thus, the following are equivalent:
+
+   \begin{equation}
+   \underset{\theta}{\arg\max} \sum\limits_{i=1}^n \log f(x_i|\theta) = \underset{\theta}{\arg\min} - \sum\limits_{i=1}^n \log f(x_i|\theta) = \hat{\theta}_{\textnormal{MLE}} 
+   \end{equation}
+
+%-----------------------------------------------------------------------------%
 \section{Multi Layer Perceptron}
 %-----------------------------------------------------------------------------%
 \todo{tuliskan secara detail tentang dbn}
