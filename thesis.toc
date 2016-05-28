@@ -27,15 +27,21 @@
 \contentsline {section}{\numberline {2.7}Multi Layer Perceptron}{8}{section.2.7}
 \contentsline {section}{\numberline {2.8}Logistic Regression}{8}{section.2.8}
 \contentsline {chapter}{\numberline {3}\uppercase {Metodologi Penelitian}}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Satu Persamaan}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}Lebih dari Satu Persamaan}{9}{section.3.2}
+\contentsline {section}{\numberline {3.1}Gambaran Umum Penelitian}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pengumpulan Data dan Pengolahan Awal}{10}{section.3.2}
+\contentsline {section}{\numberline {3.3}Perancangan Algoritma}{10}{section.3.3}
+\contentsline {section}{\numberline {3.4}Melakukan Testing Arsitektur Deep Learning}{10}{section.3.4}
+\contentsline {section}{\numberline {3.5}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{10}{section.3.5}
+\contentsline {section}{\numberline {3.6}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Unsupervised}{10}{section.3.6}
+\contentsline {section}{\numberline {3.7}Perbandingan Hasil Perangkingan Dengan Literatur}{10}{section.3.7}
 \contentsline {chapter}{\numberline {4}\uppercase {Hasil Penelitian dan Pembahasan}}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}thesis.tex}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}laporan\_setting.tex}{11}{section.4.2}
-\contentsline {section}{\numberline {4.3}istilah.tex}{11}{section.4.3}
-\contentsline {section}{\numberline {4.4}hype.indonesia.tex}{11}{section.4.4}
-\contentsline {section}{\numberline {4.5}pustaka.tex}{12}{section.4.5}
-\contentsline {section}{\numberline {4.6}bab[1 - 6].tex}{12}{section.4.6}
+\contentsline {section}{\numberline {4.1}Dataset}{11}{section.4.1}
+\contentsline {section}{\numberline {4.2}Overview Metodologi}{11}{section.4.2}
+\contentsline {section}{\numberline {4.3}Hasil Percobaan RBM Dengan Layer-layer yang Berbeda}{11}{section.4.3}
+\contentsline {section}{\numberline {4.4}Hasil Penerapan Multi Step Ranking Bobot}{11}{section.4.4}
+\contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Multi Layer Perceptron}{12}{section.4.5}
+\contentsline {section}{\numberline {4.6}Hasil Evaluasi Dengan Literatur Benferrony Method}{12}{section.4.6}
+\contentsline {section}{\numberline {4.7}Hasil Evaluasi Dengan Literatur Harvard Cancer}{12}{section.4.7}
 \contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{13}{chapter.5}
 \contentsline {section}{\numberline {5.1}Kesimpulan}{13}{section.5.1}
 \contentsline {section}{\numberline {5.2}Saran}{13}{section.5.2}
