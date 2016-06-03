@@ -5,68 +5,56 @@
 %-----------------------------------------------------------------------------%
 \section{Latar Belakang}
 %-----------------------------------------------------------------------------%
-Data ekspresi gen pada percobaan \textit{microarray} memiliki ciri khas yaitu dimensi fitur gen yang jauh lebih besar dibandingkan dengan sampel pasien. Masalah tersebut menyebabkan penerapan teknik-teknik pendeteksian penyakit dengan menggunakan data ekspresi gen  lebih sulit dan memiliki tantangan tersendiri. Tidak semua data ekspresi gen memiliki signifikansi dalam pendeteksian penyakit. Menurut penelitian \cite{yoon2006building} dan \cite{bandyopadhyay2014survey} tidak semua gen yang didapatkan dalam percobaan \textit{microarray} tersebut adalah gen yang informatif, bahkan jumlah ekspresi gen yang informatif untuk kasus yang diinginkan misalnya untuk pengenalan sel kanker, sangat sedikit dibandingkan dengan keseluruhan ekspresi gen yang didapatkan dalam sebuah percobaan \citep{bandyopadhyay2014survey}. Data ekspresi gen yang tidak informatif tersebut dapat mengurangi performa  proses pengenalan pola secara signifikan pada teknik \textit{machine learning} yang diterapkan. Akan tetapi, beberapa gen yang informatif berpengaruh secara signifikan terhadap pengenalan pola tersebut. Sebagai contoh, untuk mendiagnosa kanker paru-paru, hanya dibutuhkan sekitar 50 gen saja dari 22 ribu gen yang didapatkan dalam percobaan. Gen-gen yang paling informatif ini disebut dengan \textit{Biomarker} \citep{belinsky2004gene}. Sehingga, hanya dengan menggunakan data \textit{Biomarker} yang ditemukan saja, sudah dapat digunakan untuk mengenali penyakit yang diderita oleh pasien.\\
+Data ekspresi gen pada percobaan \textit{microarray} memiliki ciri khas yaitu dimensi fitur gen yang jauh lebih besar dibandingkan dengan sampel pasien. Masalah tersebut menyebabkan penerapan teknik pendeteksian penyakit genetis dengan menggunakan data ekspresi gen  lebih sulit dilakukan, dikarenakan data ekspresi gen tersebut memiliki signifikansi yang berbeda-beda. Menurut penelitian \cite{yoon2006building} dan \cite{bandyopadhyay2014survey} tidak semua ekspresi gen yang didapatkan dalam percobaan \textit{microarray} tersebut adalah gen yang informatif, bahkan jumlah ekspresi gen yang informatif untuk kasus yang diinginkan misalnya untuk pengenalan sel kanker, sangat sedikit dibandingkan dengan keseluruhan ekspresi gen yang didapatkan dalam sebuah percobaan \citep{bandyopadhyay2014survey}. Data ekspresi gen yang tidak informatif tersebut dapat mengganggu dan mengurangi performa secara signifikan pada teknik pengenalan pola penyakit yang diterapkan. Akan tetapi, beberapa gen yang informatif berpengaruh secara signifikan terhadap pengenalan pola tersebut. Sebagai contoh, untuk mendiagnosa kanker paru-paru, hanya dibutuhkan sekitar 50 gen saja dari 22 ribu gen yang didapatkan dalam percobaan. Gen-gen yang paling informatif ini disebut dengan \textit{Biomarker} \citep{belinsky2004gene}. Sehingga hanya dengan menggunakan data \textit{Biomarker} yang ditemukan saja, sudah dapat digunakan untuk mengenali penyakit yang diderita oleh pasien.\\
 
-\todo {motivasi dan kendala pencarian biomarker, \\
-tahu2 muncul machine learning}
+Pada penelitian ini, akan dibangun sebuah teknik pencarian \textit{Biomarker} dengan metode seleksi fitur gen. Metode ini menerapkan perankingan gen secara \textit{multi step} terhadap model yang didapatkan pada proses \textit{training}. Arsitektur yang digunakan adalah arsitektur \textit{Deep Belief Network (DBN)} yang merupakan bagian dari metode \textit{deep learning}. Metode perankingan yang digunakan adalah modifikasi dari algoritma seleksi fitur untuk \textit{logistic regression} yang dilakukan oleh \cite{shevade2003simple}. Akan tetapi metode ini memiliki masalah dalam  mengeliminasi fitur jika diterapkan secara langsung pada model DBN, dikarenakan parameter bobot (W) dan bias (b) ditempatkan disetiap fitur dan model ini hanya memiliki satu layer dibandingkan dengan DBN yang memiliki banyak layer. \\
 
-Menemukan Biomarker adalah xxx.
-Pada penelitian ini, akan dibangun sebuah teknik pencarian \textit{Biomarker} dengan metode seleksi fitur gen. Metode yang digunakan merupakan modifikasi dari algoritma seleksi fitur untuk \textit{logistic regression} yang dilakukan oleh \cite{shevade2003simple}. Akan tetapi, \textit{Logistic regression} memiliki masalah dalam  mengeliminasi fitur, dikarenakan koefisien bobot ditempatkan disetiap fitur. Oleh karena itu, pada penelitian ini akan diajukan teknik pencarian \textit{Biomarker} dengan perankingan bobot pada arsitektur \textit{Deep Learning}. Teknik perangkingan bobot ini akan dimodifikasi dan digunakan untuk  meranking fitur gennya secara berjenjang atau \textit{multi step}. \\
+DBN merupakan jaringan \textit{Restrictive Boltzmann Machine (RBM)} yang disusun secara bertingkat. Dimulai dengan memberikan bobot random diantara dua network, yang dapat dilatih dengan cara meminimalkan perbedaan antara data asli dengan data rekonstruksinya. \textit{Gradien} didapatkan dengan \textit{chain rule} untuk melakukan penurunan error dengan teknik \textit{Contrastive Divergence (CD)}. Untuk dicari bobot (W) dan bias dengan \textit{maximum likelihood learning}  secara \textit{greedy} pada tiap layernya \citep{hinton2006reducing}. \\
 
-\todo {hubungan antara deep larning, bobot dan multistep ranking}
+Pada DBN, \textit{hidden unit} yang paling sering aktif adalah \textit{hidden unit} yang lebih penting dibandingkan dengan \textit{hidden unit} yang jarang aktif, oleh karena itu \textit{hidden unit} ini memiliki parameter bobot yang lebih besar dibandingkan dengan hidden unit yang jarang aktif pada saat proses \textit{training} dilakukan. Pemilihan fitur dilakukan dengan meranking unit-unit yang memiliki bobot tertinggi dimulai dari \textit{layer output} menuju \textit{layer input} untuk mendapatkan fitur gen yang paling berpengaruh. Kemudian dilakukan eliminasi bobot pada \textit{hidden unit} per layernya secara \textit{multi step}. Selanjutnya akan dipilih sebanyak \textit{top-n} gen dari hasil perankingan ini untuk dievaluasi apakah \textit{Biomarker} yang ditemukan tersebut informatif atau tidak.\\
 
-Arsitektur \textit{deep learning} yang akan digunakan adalah arsitektur \textit{Deep Belief Network (DBN)}. DBN merupakan jaringan \textit{Restrictive Boltzmann Machine (RBM)} yang disusun secara bertingkat. Dimulai dengan memberikan bobot random diantara dua network, yang dapat dilatih dengan cara meminimalkan perbedaan antara data asli dengan data rekonstruksinya. \textit{Gradien} didapatkan dengan \textit{chain rule} untuk melakukan penurunan error dengan teknik \textit{Contrastive Divergence (CD)}. Untuk dicari bobot (W) dengan \textit{maximum likelihood learning}  secara \textit{greedy} pada tiap layernya \citep{hinton2006reducing}. \\
-
-Tahapan berikutnya, fitur \textit{Biomarker} yang telah didapatkan akan digunakan sebagai data untuk penerapan evaluasi apakah \textit{Biomarker} yang ditemukan dengan perankingan tersebut dapat memperbaiki hasil klasifikasi. Untuk mengevaluasi seberapa akurat gen biomarker yang dipilih, dilakukan perbandingan hasil eksperimen dengan literatur. \\
+Tahapan berikutnya, fitur yang telah didapatkan akan digunakan sebagai data input pada \textit{Multi Layer Perceptron} (MLP) dengan tujuan untuk melakukan evaluasi apakah gen \textit{Biomarker} yang ditemukan dengan perankingan tersebut dapat memperbaiki hasil klasifikasi pasien sakit atau sehat. Untuk mengetahui keakuratannya, dilakukan perbandingan hasil eksperimen ini dengan hasil pada eksperimen lain pada literatur yang juga bertujuan untuk menemukan \textit{Biomarker}. \\
 
 
-
+%-----------------------------------------------------------------------------%
+\section{Rumusan Masalah}
+%-----------------------------------------------------------------------------%
+Berdasarkan pada uraian pendahuluan diatas maka dapat dibuat rumusan permasalahan sebagai berikut:
+Dikarenakan karakteristik sedikitnya sampel dan besarnya fitur pada data ekspresi gen serta signifikansi pencarian Biomarker pada penyakit yang disebabkan oleh genetis, maka apakah metode seleksi fitur berbasis perankingan bobot secara multi step menggunakan deep learning untuk pencarian Biomarker tersebut dapat diterapkan?
 
 
 
 %-----------------------------------------------------------------------------%
-\section{Perumusan Masalah}
-%-----------------------------------------------------------------------------%
-Dikarenakan karakteristik sedikitnya sampel dan besarnya fitur. Serta tidak lengkapnya informasi kita terhadap gen. Apakah pendekatan unsupervised pada deep learning untuk mencari \textit{Biomarker} dengan perankingan bobot secara \textit{multi step} cocok dipakai pada data microarray?
-
-
-%-----------------------------------------------------------------------------%
-\subsection{Definisi Permasalahan}
-%-----------------------------------------------------------------------------%
-\todo{Tuliskan permasalahan yang ingin diselesaikan. Bisa juga
-	berbentuk pertanyaan}
-
-
-%-----------------------------------------------------------------------------%
-\subsection{Batasan Permasalahan}
+\section{Batasan Permasalahan}
 %-----------------------------------------------------------------------------%
 
-\todo {pikirkan lagi batasan permasalahan}
 \begin{itemize}
-\item Dataset microarray untuk kanker paru-paru yang tersedia secara bebas dengan kode GSE10072
-\item Data yang digunakan adalah dataset yang sudah dilakukan preprocessing standar dan sudah dinormalisasi.
+\item Dataset yang digunakan adalah data ekspresi gen microarray untuk penyakit kanker paru-paru yang tersedia secara bebas dengan kode GSE10072
+\item Data yang digunakan adalah dataset yang sudah dilakukan pengolahan awal standar.
+\item Komputer yang digunakan adalah laptop lenovo core i7 dengan memory 8 Gb.
 \end{itemize}
 
 %-----------------------------------------------------------------------------%
-\section{Tujuan}
+\section{Tujuan Penelitian}
 %-----------------------------------------------------------------------------%
-Penelitian ini bertujuan untuk membangun metodologi dalam pencarian \textit{Biomarker} Gen yang paling penting untuk percobaan microarray. Dengan menghitung bobot ranking gen secara multi step.
-
-%-----------------------------------------------------------------------------%
-\section{Posisi Penelitian}
-%-----------------------------------------------------------------------------%
-\todo{Posisi penelitian Anda jika dilihat secara bersamaan dengan 
-	peneliti-peneliti lainnya. Akan lebih baik lagi jika ikut menyertakan 
-	diagram yang menjelaskan hubungan dan keterkaitan antar 
-	penelitian-penelitian sebelumnya}
-
-
+Penelitian ini bertujuan untuk:
+\begin{itemize}
+\item Membangun metodologi pencarian \textit{Biomarker} pada dataset ekspresi gen percobaan \textit{microarray}.
+\item Membuat algoritma perankingan gen secara multi step yang diterapkan pada arsitektur DBN.
+\item Melakukan evaluasi apakah \textit{Biomarker} yang ditemukan oleh metode ini untuk dilakukan verifikasi dengan literatur.
+\end{itemize}
 
 
 %-----------------------------------------------------------------------------%
 \section{Manfaat Penelitian}
 %-----------------------------------------------------------------------------%
-Mendapatkan framework untuk melakukan perankingan data ekspresi gen sehingga didapatkan gen yang paling informatif menggunakan arsitektur deep learning agar membantu dalam pencarian biomarker pada penelitian data microarray.
+Hasil dari penelitian ini memiliki manfaat :
+\begin{itemize}
+\item Framework DBN untuk pencarian \textit{Biomarker} ini dapat diterapkan untuk mendeteksi apakah seseorang memiliki resiko genetis penyakit kanker paru-paru. 
+\item Mendapatkan fitur gen yang paling penting dan informatif pada kasus penyakit kanker paru-paru.
+\item Melakukan pendeteksian kanker paru-paru secara dini dengan data yang didapatkan dari profil gen pasien pada eksperimen\textit{microarray}.
+\end{itemize}
+
 
 %-----------------------------------------------------------------------------%
 \section{Sistematika Penulisan}
@@ -74,15 +62,13 @@ Mendapatkan framework untuk melakukan perankingan data ekspresi gen sehingga did
 Sistematika penulisan laporan adalah sebagai berikut:
 \begin{itemize}
 	\item Bab 1 \babSatu \\
-	Berisi gambaran permasalahan dan metodologi apa yang akan diterapakan
+	Berisi gambaran umum permasalahan dan metodologi apa yang akan diterapakan.
 	\item Bab 2 \babDua \\
-	Landasan teori dipakainya metodologi yang akan diterapkan dalam eksperimen
+	Landasan teori dipakainya metodologi yang akan diterapkan dalam eksperimen ini.
 	\item Bab 3 \babTiga \\
-	Penjelasan detail metodologi yang akan diterapkan dalam penelitian
+	Penjelasan detail metodologi yang akan diterapkan dalam penelitian.
 	\item Bab 4 \babEmpat \\
-	Pembahasan hasil dari eksperimen
+	Pembahasan hasil dari eksperimen yang sudah dilakukan.
 	\item Bab 5 \kesimpulan \\
 \end{itemize}
-
-\todo{Tambahkan penjelasan singkat mengenai isi masing-masing bab.}
 
