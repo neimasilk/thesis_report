@@ -188,5 +188,10 @@ The general intuition is that if parameter updates are small enough compared to 
 Implementation
 We construct an RBM class. The parameters of the network can either be initialized by the constructor or can be passed as arguments. This option is useful when an RBM is used as the building block of a deep network, in which case the weight matrix and the hidden layer bias is shared with the corresponding sigmoidal layer of an MLP network.
 
+% terjemahan :
 
+Energy-Based Models (EBM)
+EBM mengaitkan sebuah energi skalar pada setiap konfigurasi variable yang diingini. Proses learning bertujuan untuk memodifikasi fungsi energi sehingga bentuknya memiliki  sifat yang diinginkan. Sebagai contoh, misalnya diinginkan sebuah bentuk konfigurasi yang memiliki energi yang rendah, maka model probabilistik dari EBM didifinisikan sebagi distribusi probabilitas melalui fungsi energi sebagi berikut:
+
+(1)p(x) = \frac {e^{-E(x)}} {Z}.
 \end{document}

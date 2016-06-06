@@ -27,22 +27,25 @@
 \contentsline {chapter}{\numberline {3}\uppercase {Metodologi Penelitian}}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Gambaran Umum Penelitian}{10}{section.3.1}
 \contentsline {section}{\numberline {3.2}Pengumpulan Data dan Pengolahan Awal}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Perancangan Algoritma}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Melakukan Testing Arsitektur Deep Learning}{11}{section.3.4}
-\contentsline {section}{\numberline {3.5}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{11}{section.3.5}
-\contentsline {section}{\numberline {3.6}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Unsupervised}{11}{section.3.6}
-\contentsline {section}{\numberline {3.7}Perbandingan Hasil Perangkingan Dengan Literatur}{11}{section.3.7}
-\contentsline {chapter}{\numberline {4}\uppercase {Hasil Penelitian dan Pembahasan}}{12}{chapter.4}
-\contentsline {section}{\numberline {4.1}Dataset}{12}{section.4.1}
-\contentsline {section}{\numberline {4.2}Overview Metodologi}{12}{section.4.2}
-\contentsline {section}{\numberline {4.3}Hasil Percobaan RBM Dengan Layer-layer yang Berbeda}{12}{section.4.3}
-\contentsline {section}{\numberline {4.4}Hasil Penerapan Multi Step Ranking Bobot}{12}{section.4.4}
-\contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Multi Layer Perceptron}{13}{section.4.5}
-\contentsline {section}{\numberline {4.6}Hasil Evaluasi Dengan Literatur Benferrony Method}{13}{section.4.6}
-\contentsline {section}{\numberline {4.7}Hasil Evaluasi Dengan Literatur Harvard Cancer}{13}{section.4.7}
-\contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{14}{chapter.5}
-\contentsline {section}{\numberline {5.1}Kesimpulan}{14}{section.5.1}
-\contentsline {section}{\numberline {5.2}Saran}{14}{section.5.2}
-\contentsline {chapter}{Daftar Referensi}{15}{section.5.2}
+\contentsline {section}{\numberline {3.3}Data Profil Gen Percobaan Microarray dan Biomarker}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Perancangan Algoritma}{11}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Tahap Unsupervised}{12}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Tahap Supervised}{12}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Tahap Tuning Parameter}{12}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Melakukan Testing Arsitektur DBN}{12}{section.3.5}
+\contentsline {section}{\numberline {3.6}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{12}{section.3.6}
+\contentsline {section}{\numberline {3.7}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised}{13}{section.3.7}
+\contentsline {section}{\numberline {3.8}Perbandingan Hasil Perangkingan Dengan Literatur}{13}{section.3.8}
+\contentsline {chapter}{\numberline {4}\uppercase {Hasil Penelitian dan Pembahasan}}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview Metodologi}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}Hasil Percobaan RBM Dengan Layer-layer yang Berbeda}{14}{section.4.2}
+\contentsline {section}{\numberline {4.3}Hasil Penerapan Multi Step Ranking Bobot}{14}{section.4.3}
+\contentsline {section}{\numberline {4.4}Hasil Evaluasi Dengan Multi Layer Perceptron}{14}{section.4.4}
+\contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Literatur Benferrony Method}{15}{section.4.5}
+\contentsline {section}{\numberline {4.6}Hasil Evaluasi Dengan Literatur Harvard Cancer}{15}{section.4.6}
+\contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{16}{chapter.5}
+\contentsline {section}{\numberline {5.1}Kesimpulan}{16}{section.5.1}
+\contentsline {section}{\numberline {5.2}Saran}{16}{section.5.2}
+\contentsline {chapter}{Daftar Referensi}{17}{section.5.2}
 \contentsline {chapter}{LAMPIRAN}{1}{section*.14}
 \contentsline {chapter}{Lampiran 1}{2}{section*.15}
