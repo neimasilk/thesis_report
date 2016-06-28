@@ -14,7 +14,7 @@
 \contentsline {section}{\numberline {1.3}Batasan Permasalahan}{3}{section.1.3}
 \contentsline {section}{\numberline {1.4}Tujuan Penelitian}{3}{section.1.4}
 \contentsline {section}{\numberline {1.5}Manfaat Penelitian}{3}{section.1.5}
-\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{3}{section.1.6}
+\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{4}{section.1.6}
 \contentsline {chapter}{\numberline {2}\uppercase {Tinjauan Pustaka}}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Ekspresi Gen}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Pemrosesan Data Microarray}{7}{section.2.2}
@@ -41,10 +41,9 @@
 \contentsline {subsection}{\numberline {3.2.1}Perhitungan Seleksi Fitur dengan Multi-Step Ranking }{24}{subsection.3.2.1}
 \contentsline {section}{\numberline {3.3}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{25}{section.3.3}
 \contentsline {section}{\numberline {3.4}Pengumpulan Data dan Pengolahan Awal}{27}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Implementasi dengan R-Bioconductor}{28}{subsection.3.4.1}
 \contentsline {section}{\numberline {3.5}Data Profil Gen Percobaan Microarray dan Biomarker}{28}{section.3.5}
 \contentsline {section}{\numberline {3.6}Perancangan Metodologi Penelitian}{29}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Tahapan Unsupervised}{29}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.1}Tahapan \textit {Unsupervised}}{29}{subsection.3.6.1}
 \contentsline {subsection}{\numberline {3.6.2}Tahapan Supervised}{31}{subsection.3.6.2}
 \contentsline {subsubsection}{\numberline {3.6.2.1}Implementasi Logistic Regression pada Layer Output}{31}{subsubsection.3.6.2.1}
 \contentsline {subsection}{\numberline {3.6.3}Tahapan Tuning Parameter}{31}{subsection.3.6.3}
@@ -71,6 +70,6 @@
 \contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{50}{chapter.5}
 \contentsline {section}{\numberline {5.1}Kesimpulan}{50}{section.5.1}
 \contentsline {section}{\numberline {5.2}Saran}{50}{section.5.2}
-\contentsline {chapter}{Daftar Referensi}{51}{section.5.2}
+\contentsline {chapter}{Daftar Referensi}{52}{Item.19}
 \contentsline {chapter}{LAMPIRAN}{1}{section*.47}
 \contentsline {chapter}{Lampiran 1}{2}{section*.48}

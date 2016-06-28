@@ -101,11 +101,6 @@ Data microarray tersedia secara bebas di geo [http://www.ncbi.nlm.nih.gov/geo/],
 	\label{fig:pengolahan_awal}
 \end{figure}
 
-\subsection{Implementasi dengan R-Bioconductor}
-Implementasi preprocessing dengan menggunakan R-Bioconductor
-
-% \lstinputlisting[language=R, frame=single, basicstyle=\tiny]{snip/r_preprocessing.r}
-
 
 %-----------------------------------------------------------------------------%
 \section{Data Profil Gen Percobaan Microarray dan Biomarker}
@@ -117,7 +112,7 @@ Definisi \textit{Biomarker} adalah sesuatu penanda yang bisa digunakan sebagai i
 	\centering
 	\includegraphics[width=1\textwidth]
 		{pics/biomarker.png}
-	\caption{Contoh 26 Gen Biomarker Kanker Paru-paru GSE10072}
+	\caption{Contoh 26 Gen Biomarker Kanker Paru-paru GSE10072 \citep{landi2008gene}}
 	\label{fig:biomarker}
 \end{figure}
 
@@ -127,7 +122,7 @@ Definisi \textit{Biomarker} adalah sesuatu penanda yang bisa digunakan sebagai i
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\subsection{Tahapan Unsupervised}
+\subsection{Tahapan \textit{Unsupervised}}
 %-----------------------------------------------------------------------------%
 Tahap \textit{unsupervised} adalah tahapan dimana model DBN ditraining secara \textit{unsupervised} dengan data training pada tiap-tiap layernya secara \textit{greedy}, artinya, proses pelatihan dilakukan secara berjenjang mulai dari layer visibel dengan hidden layer 0 dan kemudian layer ini bobotnya dibuat tetap dan digunakan sebagai input pada leyer berikutnya. Tiap layernya dihitung cost untuk kemudian diminimisasi errornya. Konsep ini disebut \textit{greedy layer-wise training} yaitu setiap layer di traning secara independen dan satu-satu mulai dari layer input yang merupakan data ekspresi gen yang sudah disesuaikan dan dinormalisasi sampai layer output. Seperti pada \pic~\ref{fig:greedy1}
 
@@ -135,7 +130,7 @@ Tahap \textit{unsupervised} adalah tahapan dimana model DBN ditraining secara \t
 	\centering
 	\includegraphics[width=0.5\textwidth]
 		{pics/greedy1.png}
-	\caption{Greedy layer-wise training pada layer visible dan hidden pertama}
+	\caption{Greedy layer-wise training pada layer visible dan hidden pertama\citep{duh2014deep}}
 	\label{fig:greedy1}
 \end{figure}
 
@@ -145,7 +140,7 @@ Setelah layer pertama selesai di training, layer pertama dibuat \textit{fixed} d
 	\centering
 	\includegraphics[width=0.5\textwidth]
 		{pics/greedy2.png}
-	\caption{Greedy layer-wise training pada selanjutnya, yaitu dengan membuat layer sebelumnya Fixed}
+	\caption{Greedy layer-wise training pada selanjutnya, yaitu dengan membuat layer sebelumnya Fixed \citep{duh2014deep}}
 	\label{fig:greedy2}
 \end{figure}
 
@@ -229,7 +224,7 @@ Evaluasi hasil hasil perankingan secara \textit{supervised} diperlukan untuk men
 	\label{fig:biomarker1}
 \end{figure}
 
-Hasil perankingan pada percobaan tersebut selanjutnya diteliti apakah gen hasil perankingan tersebut adalah gen yang memiliki signifikansi terhadap penyakit yang diinginkan. Dalam kasus ini yaitu penyakit kanker paru-paru. Berikut adalah contoh 26 gen biomarker pada percobaan GSE10072 yang disitasi dari paper. 
+Hasil perankingan pada percobaan tersebut selanjutnya diteliti apakah gen hasil perankingan tersebut adalah gen yang memiliki signifikansi terhadap penyakit yang diinginkan. Dalam kasus ini yaitu penyakit kanker paru-paru. Berikut adalah contoh 26 gen biomarker pada percobaan GSE10072 yang disitasi dari paper \citep{landi2008gene}. 
 
 %-----------------------------------------------------------------------------%
 \section{Modul-modul Pendukung}
@@ -271,6 +266,7 @@ Kelas Generator ini adalah modul yang dibuat agar bisa secara otomatis memilih g
 	\caption{Diagram Proses Menggenerasi Data Untuk Dijadikan Dataset Training}
 	\label{fig:generator2}
 \end{figure}
+Setelah didapatkan top-n gen, diperlukan proses untuk menggenerasi data ulang yang didapat dari data asli diambil gen top-n tersebut, pada penelitian ini akan diambil top 250 gen agar sesuai dengan gen yang didapat di literatur untuk kemudian dilakukan konfirmasi. Dan dievaluasi apakah terjadi peningkatan atau penurunan akurasi dibandingkan dengan tanpa adanya seleksi fitur.
 
 
 

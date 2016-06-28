@@ -100,11 +100,11 @@ Akan tetapi tiga paper yang terbit pada 2006 secara revolusioner telah merubah h
 
 
 Learning secara \textit{unsupervised} menggunakan \textit{pretraining} secara tiap layer yang disebut dengan \textit{greedy layer-wise training}, yaitu training dilakukan  satu layer pada tiap satu waktu. Training ini dilakukan secara berjenjang pada layer selanjutnya. Kemudian dilakukan \textit{supervised training} untuk melakukan \textit{tuning parameter}, yang dimulai dari parameter hasil pretraining yang dilakukan sebelumnya.\\
-DBN menggunakan RBM sebagai bagian terkecil dari layernya, yang menggunakan learning secara unsupervised yang merepresentasikan tiap layer. Sejak 2006, banyak sekali paper-paper yang mulai melakukan eksplorasi tentang deep learning ini, sehingga sejak saat itu deep learning merupakan salah satu teknik \textit{machine learning} yang paling populer, bahkan sampai saat ini \citep{tutorial2014lisa}.
+DBN menggunakan RBM sebagai bagian terkecil dari layernya, yang menggunakan learning secara unsupervised yang merepresentasikan tiap layer. Sejak 2006, banyak sekali paper-paper yang mulai melakukan eksplorasi tentang deep learning ini, sehingga sejak saat itu deep learning merupakan salah satu teknik \textit{machine learning} yang paling populer, bahkan sampai saat ini \citep{fakoorusing}.
 
 \section{Energy-Based Model (EBM)}
 
-EBM mengaitkan sebuah energi skalar pada setiap konfigurasi variable yang diinginkan. Proses learning bertujuan untuk memodifikasi fungsi energi sehingga bentuknya memiliki  sifat yang diinginkan. Sebagai contoh, misalnya diinginkan sebuah bentuk konfigurasi yang memiliki energi yang rendah, maka model probabilistik dari EBM didifinisikan sebagi distribusi probabilitas melalui fungsi energi sebagi berikut\citep{tutorial2014lisa}
+EBM mengaitkan sebuah energi skalar pada setiap konfigurasi variable yang diinginkan. Proses learning bertujuan untuk memodifikasi fungsi energi sehingga bentuknya memiliki  sifat yang diinginkan. Sebagai contoh, misalnya diinginkan sebuah bentuk konfigurasi yang memiliki energi yang rendah, maka model probabilistik dari EBM didifinisikan sebagi distribusi probabilitas melalui fungsi energi sebagi berikut\citep{poultney2006efficient}
 \begin{equation}
 p(x) = \frac {e^{-E(x)}} {Z}.
 \end{equation}
@@ -130,7 +130,7 @@ Menggunakan stochastic gradient $-\frac{\partial  \log p(x^{(i)})}{\partial
 
 \subsection{EBM dengan Hidden Units}
 
-Pada banyak kasus, sampel $x$ biasanya tidak terobservasi secara penuh, atau akan ditambahkan varibel yang tidak teobservasi secara langsung yang disebut dengan hidden unit, dimana hal ini berguna untuk meningkatkan ekspresivitas dari model. Sehingga dikenalkan bagian yang terobservasi disini dilambangkan dengan $x$, dan sebuah bagian yang tersembunyi $h$. Sehingga bisa ditulis sebagai:
+Pada banyak kasus, sampel $x$ biasanya tidak terobservasi secara penuh, atau akan ditambahkan variabel yang tidak terobservasi secara langsung yang disebut dengan hidden unit, dimana hal ini berguna untuk meningkatkan ekspresivitas dari model. Sehingga dikenalkan bagian yang terobservasi disini dilambangkan dengan $x$, dan sebuah bagian yang tersembunyi dilambangkan dengan $h$. Sehingga bisa ditulis sebagai:
 \begin{equation}
 P(x) = \sum_h P(x,h) = \sum_h \frac{e^{-E(x,h)}}{Z}.
 \end{equation}
@@ -152,10 +152,10 @@ Data dari gradien NLL kemudian memiliki bentuk yang menarik yaitu:
            \frac{\partial \mathcal{F}(\tilde{x})}{\partial \theta}.
 \end{equation}
 
-Gradien diatas memiliki dua istilah, dimana hal tersebut mereferensikan pada fase positif dan fase negatif. Istilah positif dan negatif ini tidak merujuk pada tanda (positif/negatif)  persamaan, akan tetapi merefleksikan efek pada kepadatan probabilitas yang didefinisikan oleh model. Istilah pertama, menambah probabilitas data training (dengan cara mengurangi free energy yg berhubungan), sedangkan istilah kedua mengurangi probabilitias sampel yang digenerasi oleh model \citep{tutorial2014lisa}.\\
+Gradien diatas memiliki dua istilah, dimana hal tersebut mereferensikan pada fase positif dan fase negatif. Istilah positif dan negatif ini tidak merujuk pada tanda (positif/negatif)  persamaan, akan tetapi merefleksikan efek pada kepadatan probabilitas yang didefinisikan oleh model. Istilah pertama, menambah probabilitas data training (dengan cara mengurangi free energy yg berhubungan), sedangkan istilah kedua mengurangi probabilitias sampel yang digenerasi oleh model \citep{poultney2006efficient}.\\
 
 Biasanya sulit untuk menentukan gradien secara analitis, oleh karena berhubungan dengan komputasi dari $E_P [ \frac{\partial \mathcal{F}(x)} {\partial \theta} ]$. Dikarenakan hal ini merupakan ekspektasi semua kemungkinan konfigurasi input $x$ (pada distribusi $P$ yang dibentuk oleh model).\\
-Oleh karena itu, langkah pertama agar bisa dikomputasi secara analitis maka dilakukan estimasi ekspektasi menggunakan jumlah yang pasti dari sampel pada model. Sampel digunakan untuk mengestimasi gradien dari fase negatif yang direferensikan sebagai partikel negatif, dimana disimbolkan sebagai $\mathcal{N}$. Kemudian, gradien bisa ditulis sebagai \citep{tutorial2014lisa} : 
+Oleh karena itu, langkah pertama agar bisa dikomputasi secara analitis maka dilakukan estimasi ekspektasi menggunakan jumlah yang pasti dari sampel pada model. Sampel digunakan untuk mengestimasi gradien dari fase negatif yang direferensikan sebagai partikel negatif, dimana disimbolkan sebagai $\mathcal{N}$. Kemudian, gradien bisa ditulis sebagai \citep{poultney2006efficient} : 
 
 \begin{equation}
 - \frac{\partial \log p(x)}{\partial \theta}
@@ -170,7 +170,7 @@ Dimana secara ideal, elemen seperti $\tilde{x}$ dari $\mathcal{N}$ disampel menu
 %-----------------------------------------------------------------------------%
 \section{Restricted Boltzmann Machine}
 %-----------------------------------------------------------------------------%
-Boltzmann Machines (BMs) adalah bentuk khusus dari log-linear Markov Random Field (MRF), dengan kata lain, dimana fungsi energi adalah linear pada parameter bebasnya. Agar membuat BM cukup bisa merepresentasikan distribusi yang kompleks(dengan kata lain, berangkat dari setting parameter yang terbatas kepada non paramter), diasumsikan bahwa beberapa variabel tidak terobserbasi sehingga disebut hidden. Dengan memiliki variabel hidden, bisa dilakukan peningkatan kapasitas model dari BM. RBM, selanjutnya membuat BM yang terbatas pada variabel tanpa koneksi visibel-visibel dan hidden-hidden. Seperti pada gambar \ref{fig:rbm} \citep{hinton2006reducing}\\
+Boltzmann Machines (BMs) adalah bentuk khusus dari log-linear Markov Random Field (MRF), dengan kata lain, dimana fungsi energi adalah linear pada parameter bebasnya. Agar membuat BM cukup bisa merepresentasikan distribusi yang kompleks(dengan kata lain, berangkat dari setting parameter yang terbatas kepada non paramter), diasumsikan bahwa beberapa variabel tidak terobserbasi sehingga disebut hidden. Dengan memiliki variabel hidden, bisa dilakukan peningkatan kapasitas model dari BM. RBM, selanjutnya membuat BM yang terbatas pada variabel tanpa koneksi visibel-visibel dan hidden-hidden. Seperti pada gambar \ref{fig:rbm} \citep{hinton2006fast}\\
 \begin{figure}
 	\centering
 	\includegraphics[width=0.3\textwidth]
@@ -260,11 +260,7 @@ Secara teori, tiap parameter diupdate pada proses learning dibutuhkan satu ranta
 
 \section{Contrastive Divergence (CD-k)}
 
-Contrastive Divergence(CD) menggunakan trik untuk mempercepat proses sampling: \\
-
-
-Contrastive Divergence uses two tricks to speed up the sampling process:
-Dikarenakan yang diinginkan adalah $p(v) \approx p_{train}(v)$ (distribusi data yang asli), initialisasi  Markov chain dengan contoh data training (dimana, berasal dari distribusi yang mendekati $p$, pada distribusi final dari $p$). CD tidak menunggu rantai untuk konvergen. Sampel didapatkan setalah langkah ke-$k$ dari Gibbs sampling. Pada prakteknya, $k=1$ secara mengejutkan sudah menghasilkan hasil yang baik.\\
+Contrastive Divergence(CD) menggunakan trik untuk mempercepat proses sampling: Dikarenakan yang diinginkan adalah $p(v) \approx p_{train}(v)$ (distribusi data yang asli), initialisasi  Markov chain dengan contoh data training (dimana, berasal dari distribusi yang mendekati $p$, pada distribusi final dari $p$). CD tidak menunggu rantai untuk konvergen. Sampel didapatkan setalah langkah ke-$k$ dari Gibbs sampling. Pada prakteknya, $k=1$ sudah menghasilkan hasil yang baik.\\
 
 \section{Persistent CD}
 
@@ -277,7 +273,7 @@ Intuisinya adalah jika update parameternya cukup kecil dibaningkan dengan rate c
 \section{Deep Believe Network}
 %-----------------------------------------------------------------------------%
 
-Hinton menunjukkan bahwa RBM bisa dijajar dan dilatih secara greedy untuk membentuk sebuah jaringan yang dinamakan dengan Deep Belief Network (DBN). DBN adalah model grafis dimana bisa melakukan learning untuk mengekstraksi representasi hirarki yang mendalam (deep) dari data training. Hal ini memodelkan distribusi gabungan antara vektor x sebagai observer dan $\ell$ layer hidden $h^k$ sebagai berikut:
+\cite{hinton2006fast} menunjukkan bahwa RBM bisa dijajar dan dilatih secara greedy untuk membentuk sebuah jaringan yang dinamakan dengan \textit{Deep Belief Network (DBN)}. DBN adalah model grafis dimana bisa melakukan learning untuk mengekstraksi representasi hirarki yang mendalam (deep) dari data training. Hal ini memodelkan distribusi gabungan antara vektor $x$ sebagai observer dan $\ell$ layer hidden $h^k$ sebagai berikut:
 
 \begin{equation}
 P(x, h^1, \ldots, h^{\ell}) = \left(\prod_{k=0}^{\ell-2} P(h^k|h^{k+1})\right) P(h^{\ell-1},h^{\ell})
@@ -289,12 +285,12 @@ Dimana $x=h^0, P(h^{k-1} | h^k)$ adalah distribusi kondisional untuk unit visibl
 	\centering
 	\includegraphics[width=0.3\textwidth]
 		{pics/DBN3.png}
-	\caption{Arsitektur Deep Believe Network (DBN) yang merupakan gabungan dari RBM}
+	\caption{Arsitektur Deep Believe Network (DBN) yang merupakan gabungan dari RBM yang dibuat bertingkat}
 	\label{fig:dbn3}
 \end{figure}
 
 
-Prinsip dari greedy layer-wise unsupervised training bisa di aplikasikan pada DBN dengan RBM sebagai bagian pada tiap layernya [hinton] [bengio]. Pada prinsipnya prosesnya adalah sebagai berikut:
+Prinsip dari \textit{greedy layer-wise unsupervised training} bisa di aplikasikan pada DBN dengan RBM sebagai bagian pada tiap layernya [hinton] [bengio]. Pada prinsipnya prosesnya adalah sebagai berikut:
 \begin{enumerate}
 \item Latih layer pertama ssebagai RBM yang memodelkan input $x = h^{(0)}$ sebagai visible layernya.
 \item Gunakan layer pertama untuk mendapatkan representasi input yang digunakan sebagai data untuk layer kedua. Ada dua solusi yang sama. Representasi ini bisa dipilih sebagai rata-rata dari aktivasi $p(h^{(1)}=1|h^{(0)})$ atau sampel dari $p(h^{(1)}|h^{(0)})$.
@@ -355,7 +351,7 @@ Melakukang \textit{learning} pamameter model dengan cara meminimalisasi \textit{
 \ell (\theta=\{W,b\}, \mathcal{D}) = - \mathcal{L} (\theta=\{W,b\}, \mathcal{D})
 \end{aligned}
 \end{equation}
-Untuk meminimisasi, digunakan \textit{stochastic gradient descen with minibatches (MSGD)} \citep{tutorial2014lisa}.
+Untuk meminimisasi, digunakan \textit{stochastic gradient descen with minibatches (MSGD)} \citep{hinton2006fast}.
 
 
 %-----------------------------------------------------------------------------%

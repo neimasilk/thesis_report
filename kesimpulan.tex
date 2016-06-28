@@ -6,9 +6,13 @@
 %---------------------------------------------------------------
 \section{Kesimpulan}
 %---------------------------------------------------------------
-Metodologi pencarian biomarker secara \textit{unsupervised} dengan menggunakan teknik Deep Believe Network (DBN) memiliki kelebihan yaitu tidak diperlukannya pengetahuan kita tentang gen secara lengkap, dan bisa dilakukan generalisasi pada penyakit-penyakit lainnya.\\
-Algoritma perankingan gen secara multi-step pada jaringan DBN yang merupakan modifikasi dari metode sebelumnya yang hanya bisa dilakukan pada teknik \textit{logistic regression} sekarang bisa dilakukan untuk network DBN yang di training secara unsupervised murni.\\
-Evaluasi yang dilakukan secara bertahap yaitu mulai dari dibandingkannya metode unsupervised dengan masalah klasifikasi supervised dengan MLP menunjukkan peningkatan hasil klasifikasi yang signifikan. Dan biomarker yang ditemukan, dibandingkan dengan literatur yaitu metode bonferroni menunjukkan bahwa gen yang ditemukan memiliki signifikansi yang tinggi.
+Penelitian ini menerapkan seleksi fitur perankingan multi-step pada \textit{arsitektur deep believe network (DBN)} untuk mencari \textit{biomarker} pada data microarray penyakit kanker paru-paru. Penerapannya menggunakan library Theano pada bahasa pemrograman Python. Kesimpulan yang dapat diambil dari penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+\item Metodologi pencarian \textit{biomarker} secara \textit{unsupervised} dengan menggunakan teknik \textit{Deep Believe Network (DBN)} didapatkan model terbaik  dengan konfigurasi hidden unit 4 layer [7000, 10000, 5000, 1000] dengan epoch 1000 dan learning rate 0.01.
+\item Algoritma perankingan gen secara multi-step pada jaringan DBN yang merupakan modifikasi dari metode sebelumnya yang hanya bisa dilakukan pada teknik \textit{logistic regression} sekarang bisa dilakukan untuk network DBN yang di training secara \textit{unsupervised} murni.
+\item Evaluasi yang dilakukan secara bertahap yaitu mulai dari dibandingkannya metode unsupervised dengan masalah klasifikasi \textit{supervised} dengan MLP menunjukkan peningkatan hasil klasifikasi yang signifikan. Dan \textit{biomarker} yang ditemukan, dibandingkan dengan literatur yaitu metode bonferroni menunjukkan bahwa gen yang ditemukan memiliki signifikansi yang tinggi.
+\end{enumerate}
+
 
 
 
@@ -16,5 +20,10 @@ Evaluasi yang dilakukan secara bertahap yaitu mulai dari dibandingkannya metode 
 \section{Saran}
 %---------------------------------------------------------------
 
-Karena keterbatasan waktu penelitian dan mesin yang digunakan, maka ada banyak hal yang bisa dilakukan untuk penelitian selanjutnya, yaitu melakukan generalisasi, apakah metode ini cocok juga dilakukan untuk penyakit-penyakit lainnya. \\
-Karena metode ini menggunakan arsitektur deep learning yang memiliki jaringan yang dalam, apakah dengan melakukan pada network DBN yang lebih dalam bisa meningkatkan keakuratan pendeteksian biomarker. Dikarenakan terbatasnya komputer, makan hal ini belum memungkinkan untuk dilakukan.
+Karena keterbatasan waktu penelitian dan mesin yang digunakan, maka ada banyak hal yang bisa dilakukan untuk penelitian selanjutnya yaitu: 
+\begin{enumerate}
+\item Melakukan generalisasi, apakah metode ini cocok juga dilakukan untuk data microarray pada penyakit-penyakit lainnya selain kanker paru-paru.
+\item Karena metode ini menggunakan arsitektur deep learning yang memiliki jaringan yang dalam, apakah dengan melakukan pada network DBN yang lebih dalam bisa meningkatkan keakuratan pendeteksian \textit{biomarker}. Dikarenakan terbatasnya memory komputer, makan hal ini belum memungkinkan untuk dilakukan.
+\item Diterapkan arsitektur deep learning yang lainnya misalnya stacked autoencoder, denoising autoencoder, convolutional neural-network, dan atau arsitektur-arsitektur deep learning yang baru.
+\end{enumerate}
+
