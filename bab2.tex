@@ -5,8 +5,8 @@
 %-----------------------------------------------------------------------------%
 \section{Ekspresi Gen}
 %-----------------------------------------------------------------------------%
-Percobaan \textit{microarray}, mengukur tingkat aktivitas gen di dalam sebuah jaringan sel. Sehingga dapat memberikan informasi berdasarkan aktivitas di dalam jaringan yang bersangkutan. Data ini didapatkan dengan cara mengukur banyaknya mRNA yang diproduksi pada saat proses transkripsi DNA, dimana dapat diukur seberapa aktif atau seberapa berfungsinya gen tersebut dalam sebuah jaringan \citep{elloumi2011algorithms}. Karena kanker berhubungan dengan berbagai macam aktivitas penyimpangan regulasi pada sel, maka data ekspresi gen pada kanker merefleksikan penyimpangan regulasi tersebut. Untuk menangkap keabnormalan ini, percbaan microarray, dimana dapat mengukur secara simultan dari level ekspresi ratusan bahkan ribuan ekspresi gen dapat digunakan untuk mengidentifikasi kanker. Percobaan microarray sering dipakai untuk membandingkan profil ekspresi gen pada sel yang terkena kanker, dibandingkan dengan sel yang normal pada berbagai macam percobaan. Percobaan microarray digunakan untuk mengidentifikasi ekspresi yang berbeda pada dua percobaan, yang biasanya berupa data tes dan data kontrol \citep{elloumi2011algorithms}. \\
-Ada 23.6\% fungsi gen yang belum diketahui kegunaannya sampai saat ini, hal ini merupakan tantangan pada saat dilakukan proses pengenalan penyakit yang diderita oleh pasien. Dikarenakan ada kemungkinan gen yang sangat berpengaruh terhadap identifikasi penyakit, masih belum diketahui fungsinya. Oleh karena itu, pada proses klasifikasi penyakit dengan menggunakan machine learning, sering digunakan pengenalan secara \textit{unsupervised learning} \citep{haggstrom2014diagram}. \\
+Percobaan \textit{microarray}, mengukur tingkat aktivitas gen di dalam sebuah jaringan sel. Sehingga percobaan ini dapat memberikan informasi berdasarkan aktivitas di dalam jaringan yang bersangkutan. Data ini didapatkan dengan cara mengukur banyaknya \textit{mRNA} yang diproduksi pada saat proses transkripsi DNA, dimana dapat diukur seberapa aktif atau seberapa berfungsinya gen tersebut dalam sebuah jaringan \citep{elloumi2011algorithms}. Karena kanker berhubungan dengan berbagai macam aktivitas penyimpangan regulasi pada sel, maka data ekspresi gen pada kanker merefleksikan penyimpangan regulasi tersebut. Untuk menangkap keabnormalan ini, percobaan \textit{microarray}, dimana dapat mengukur secara simultan dari level ekspresi ratusan bahkan ribuan ekspresi gen, dapat digunakan untuk mengidentifikasi kanker. Percobaan \textit{microarray} sering dipakai untuk membandingkan profil ekspresi gen pada sel yang terkena kanker, dibandingkan dengan sel yang normal pada berbagai macam percobaan. Percobaan \textit{microarray} digunakan untuk mengidentifikasi ekspresi yang berbeda pada dua percobaan, yang biasanya berupa data tes dan data kontrol \citep{elloumi2011algorithms}. \\
+Ada 23.6\% fungsi gen yang belum diketahui kegunaannya sampai saat ini, hal ini merupakan tantangan pada saat dilakukan proses pengenalan penyakit yang diderita oleh pasien. Sebab ada kemungkinan gen yang sangat berpengaruh terhadap identifikasi penyakit, tetapi masih belum diketahui fungsinya. Oleh karena itu, pada proses klasifikasi penyakit dengan menggunakan machine learning, sering digunakan pengenalan secara \textit{unsupervised learning} \citep{haggstrom2014diagram}. \\
 \begin{figure}
 	\centering
 	\includegraphics[width=0.50\textwidth]
@@ -15,7 +15,7 @@ Ada 23.6\% fungsi gen yang belum diketahui kegunaannya sampai saat ini, hal ini 
 	\label{fig:gbr2.1}
 \end{figure}
 
-Data ekspresi gen yang masih mentah didapatkan dari percobaan di laboratorium menggunakan alat yang dinamakan dengan alat Genchip microarray. Data tersebut kemudian dilakukan pemrosesan awal untuk mendapatkan sebuah matriks ekspresi gen. Matriks ini memiliki data kolom dan baris, dimana kolom berisi data eksperimen, dan baris berisi nilai ekspresi pada tiap-tiap gen (\pic~\ref{fig:gbr2.2}) \citep{babu2004introduction}.
+Data ekspresi gen yang masih mentah didapatkan dari percobaan di laboratorium menggunakan alat yang dinamakan dengan alat Genchip microarray. Data tersebut kemudian dilakukan pemrosesan awal untuk mendapatkan sebuah matriks ekspresi gen. Matriks ini memiliki data kolom dan baris, dimana kolom berisi data eksperimen, dan baris berisi nilai ekspresi pada tiap-tiap gen (\pic~\ref{fig:gbr2.3}) \citep{babu2004introduction}.
 
 \begin{figure}
 	\centering
@@ -32,7 +32,7 @@ Pengukuran microarray direspresentasikan dengan tabel gen ekspresi, dimana bagia
 	\includegraphics[width=0.95\textwidth]
 		{pics/msr.png}
 	\caption{Contoh data pengukuran percobaan microarray \citep{yoon2006building}}
-	\label{fig:msr}
+	\label{fig:gbr2.3}
 \end{figure}
 
 Karena data microarray yang didapatkan dapat mencapai ribuan ekspresi dalam satu waktu secara simultan, maka data ini dapat sangat membantu dalam mengidentifikasi penyakit. Akan tetapi, hasil yang didapat dengan menganalisa beberapa data microarray yang dilakukan oleh dua percobaan yang berbeda tetapi dengan tujuan yang sama, dapat menghasilkan hasil yang sangat berbeda. Salah satu alasannya adalah terbatasnya sampel dan terlalu banyaknya profil ekspresi gen. Sehingga diperlukan metode testing statistik untuk memastikan bahwa data microarray tersebut memiliki tingkat signifikansi yang cukup, dan dipastikan bahwa perbedaan tersebut memang karena eksperimen, bukan karena kerusakan alat atau kesalahan prosedur eksperimen.
@@ -48,25 +48,24 @@ Karena data microarray yang didapatkan dapat mencapai ribuan ekspresi dalam satu
 %-----------------------------------------------------------------------------%
 \section{Pemrosesan Data Microarray}
 %-----------------------------------------------------------------------------%
-Data yang dihasilkan dari alat microarray ini berupa citra yang perlu diproses lebih lanjut. Sebelum data ekspresi gen dapat dianalisa lebih lanjut, perlu dilakukan pemrosesan awal yang berupa (i) perbaikan background, (ii) normalisasi data dan kemudian (iii) penyaringan data.
+Data yang dihasilkan dari alat \textit{microarray} ini berupa citra yang perlu diproses lebih lanjut. Sebelum data ekspresi gen dapat dianalisa lebih lanjut, perlu dilakukan pemrosesan awal yang berupa (i) perbaikan background, (ii) normalisasi data dan kemudian (iii) penyaringan data (iv) imputasi nilai yang hilang dan (v) seleksi fitur.
 \begin{enumerate}
 \item{\textbf{Perbaikan Background}}\\
-Perbiakan background ini ditujukan untuk menghilangkan titik-titik noise yang tidak berasal dari proses hibridisasi. Metode untuk perbaikan background ini banyak diajukan dalam penelitian\citep{fakoorusing}. 
+Perbiakan background ini ditujukan untuk menghilangkan titik-titik \textit{noise} yang tidak berasal dari proses hibridisasi. Metode untuk perbaikan background ini adalah salah satu teknik yang banyak diajukan dalam penelitian\citep{fakoorusing}. 
 \item{\textbf{Normalisasi}}\\
 Tujuan dari normalisasi adalah untuk mengatur bias yang dihasilkan oleh variasi proses percobaan microarray. Metode normalisasi data microarray ada banyak, dan pada penelitian ini akan digunakan normalisasi standar untuk data microarray.
 \item{\textbf{Penyaringan data}}
 Tidak semua data yang didapat dari percobaan microarray bagus, kadangkala terjadi kesalahan alat dan noise yang diakibatkan oleh alat, oleh karena itu perlu disaring, mana data yang disebabkan oleh proses biologi, dan mana yang disebabkan oleh noise alat.
-\item{\textbf{Missing Value Imputation}}\\
-Tidak semua data ekspresi gen dapat kita dapatkan, dikarenakan rumitnya percobaan microarray, kadangkala data tidak kita dapatkan, oleh sebab itu diperlukan metode untuk melakukan pendekatan statistic dalam memberikan perkiraan isi data dalam titik data yang hilang tersebut.
+\item{\textbf{Imputasi Nilai yang Hilang}}\\
+Tidak semua data ekspresi gen dapat kita dapatkan, dikarenakan rumitnya percobaan \textit{microarray}, kadangkala data tidak kita dapatkan, oleh sebab itu diperlukan metode untuk melakukan pendekatan statistik dalam memberikan perkiraan isi data dalam titik data yang hilang tersebut.
 \item{\textbf{Seleksi Fitur}}\\
-Setelah proses diatas, diperlukan teknik untuk menseleksi fitur pada data microarray. Ada banyak metode yang sudah diusulkan oleh para peneliti. Seperti pada table 1 dibawah. Dan pada titik inilah penelitian ini dijalankan. Diharapkan penelitian ini menghasilkan metode reduksi dimensi untuk data microarray.
-
+Setelah proses diatas, diperlukan teknik untuk menseleksi fitur pada data microarray. Ada banyak metode yang sudah diusulkan oleh para peneliti. Seperti pada tabel \ref{tabel1} dibawah. Dan pada titik inilah penelitian ini dijalankan.
 \end{enumerate}
 
 %-----------------------------------------------------------------------------%
 \section{Ekstraksi Fitur dan Seleksi Fitur Pada Penelitian Sebelumnya}
 %-----------------------------------------------------------------------------%
-Pada tabel dibawah ditunjukkan perbandingan penelitian-penelitian ekstraksi fitur dengan menggunakan berbagai macam metode.
+Pada tabel dibawah ditunjukkan perbandingan penelitian-penelitian ekstraksi fitur dengan menggunakan berbagai macam metode. Pada penelitian-penelitian sebelumnya, kebanyakan menggunakan metode statistik dan pembelajaran mesin yang dilakukan adalah \textit{supervised}, yaitu memiliki target. Seperti yang dilakukan oleh \citep{aliferis2003machine}, \cite{ramaswamy2001multiclass}. Sedangkan percobaan \textit{microarray} yang memiliki target, memiliki kelemahan, yaitu tidak semua target fitur gen diketahui kegunaannya. Oleh karena itu pendekatan \textit{unsupervised} dianggap lebih cocok untuk permasalahan seleksi fitur data \textit{microarray} \citep{haggstrom2014diagram}.
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 % \usepackage[normalem]{ulem}
@@ -74,7 +73,7 @@ Pada tabel dibawah ditunjukkan perbandingan penelitian-penelitian ekstraksi fitu
 \begin{table}
 \centering
 \caption{Perbandingan Metode Seleksi fitur  pada dataset microarray}
-\label{my-label}
+\label{tabel1}
 \begin{tabular}{@{}llll@{}}
 \toprule
 Pengarang                                                            & Judul Paper                                                                                                                                                                     & Metode                                                                                                                            & Dataset                                                           \\ \midrule
@@ -91,20 +90,14 @@ Pengarang                                                            & Judul Pap
 %-----------------------------------------------------------------------------%
 
 Sebelum tahun 2006, melakukan training dalam arsitektur \textit{deep learning} selalu gagal. Percobaan untuk melakukan training dengan \textit{feedforward neural network} memiliki hasil yang lebih buruk dibandingkan dengan arsitektur yang dangkal, yaitu arsitektur dengan layer 1 atau maksimum 2 layer.\\
-Akan tetapi tiga paper yang terbit pada 2006 secara revolusioner telah merubah hal terssebut. Sehingga setelah tahun 2006 penelitian tentang \textit{deep learning} menjadi lebih intensif sampai sekarang dengan segala variasi arsitekturnya. Salah satu variasi arsitektur \textit{deep learning} yang dipakai dalam thesis ini adalah \textit{arsitektur Deep Believe Network (DBN)}. Ketiga paper tersebut adalah:
-\begin{enumerate}
-\item Hinton, G. E., Osindero, S. and Teh, Y., A fast learning algorithm for deep belief nets Neural Computation 18:1527-1554, 2006 \citep{hinton2006fast}
-\item Yoshua Bengio, Pascal Lamblin, Dan Popovici and Hugo Larochelle, Greedy Layer-Wise Training of Deep Networks, in J. Platt et al. (Eds), Advances in Neural Information Processing Systems 19 (NIPS 2006), pp. 153-160, MIT Press, 2007 \citep{bengio2007greedy}.
-\item Marc’Aurelio Ranzato, Christopher Poultney, Sumit Chopra and Yann LeCun Efficient Learning of Sparse Representations with an Energy-Based Model, in J. Platt et al. (Eds), Advances in Neural Information Processing Systems (NIPS 2006), MIT Press, 2007\citep{poultney2006efficient}.
-\end{enumerate}
-
+Akan tetapi tiga paper yang terbit pada 2006 secara revolusioner telah merubah hal tersebut. Sehingga setelah tahun 2006 penelitian tentang \textit{deep learning} menjadi lebih intensif sampai sekarang dengan segala variasi arsitekturnya. Salah satu variasi arsitektur \textit{deep learning} yang dipakai dalam thesis ini adalah \textit{arsitektur Deep Belief Network (DBN)}. Ketiga paper tersebut adalah  \cite{hinton2006fast}, \cite{bengio2007greedy} dan \cite{poultney2006efficient}.
 
 Learning secara \textit{unsupervised} menggunakan \textit{pretraining} secara tiap layer yang disebut dengan \textit{greedy layer-wise training}, yaitu training dilakukan  satu layer pada tiap satu waktu. Training ini dilakukan secara berjenjang pada layer selanjutnya. Kemudian dilakukan \textit{supervised training} untuk melakukan \textit{tuning parameter}, yang dimulai dari parameter hasil pretraining yang dilakukan sebelumnya.\\
-DBN menggunakan RBM sebagai bagian terkecil dari layernya, yang menggunakan learning secara unsupervised yang merepresentasikan tiap layer. Sejak 2006, banyak sekali paper-paper yang mulai melakukan eksplorasi tentang deep learning ini, sehingga sejak saat itu deep learning merupakan salah satu teknik \textit{machine learning} yang paling populer, bahkan sampai saat ini \citep{fakoorusing}.
+DBN menggunakan \textit{Restricted Boltzmann Machine (RBM)} sebagai bagian terkecil dari layernya, yang menggunakan learning secara unsupervised yang merepresentasikan tiap layer. Sejak 2006, banyak sekali paper-paper yang mulai melakukan eksplorasi tentang deep learning ini, sehingga sejak saat itu deep learning merupakan salah satu teknik \textit{machine learning} yang paling populer, bahkan sampai saat ini \citep{fakoorusing}.
 
-\section{Energy-Based Model (EBM)}
+\section{Energy-Based Model (EBM) Adalah Bentuk General dari Restricted Boltzman Machine (RBM)}
 
-EBM mengaitkan sebuah energi skalar pada setiap konfigurasi variable yang diinginkan. Proses learning bertujuan untuk memodifikasi fungsi energi sehingga bentuknya memiliki  sifat yang diinginkan. Sebagai contoh, misalnya diinginkan sebuah bentuk konfigurasi yang memiliki energi yang rendah, maka model probabilistik dari EBM didifinisikan sebagi distribusi probabilitas melalui fungsi energi sebagi berikut\citep{poultney2006efficient}
+EBM mengaitkan sebuah energi skalar pada setiap konfigurasi variable yang diinginkan. Proses learning bertujuan untuk memodifikasi fungsi energi sehingga bentuknya memiliki  sifat yang diinginkan. Sebagai contoh, misalnya diinginkan sebuah bentuk konfigurasi yang memiliki energi yang rendah, maka model probabilistik dari EBM didifinisikan sebagi distribusi probabilitas melalui fungsi energi sebagi berikut: \citep{poultney2006efficient}
 \begin{equation}
 p(x) = \frac {e^{-E(x)}} {Z}.
 \end{equation}
@@ -270,7 +263,7 @@ Intuisinya adalah jika update parameternya cukup kecil dibaningkan dengan rate c
 
 
 %-----------------------------------------------------------------------------%
-\section{Deep Believe Network}
+\section{Deep Belief Network}
 %-----------------------------------------------------------------------------%
 
 \cite{hinton2006fast} menunjukkan bahwa RBM bisa dijajar dan dilatih secara greedy untuk membentuk sebuah jaringan yang dinamakan dengan \textit{Deep Belief Network (DBN)}. DBN adalah model grafis dimana bisa melakukan learning untuk mengekstraksi representasi hirarki yang mendalam (deep) dari data training. Hal ini memodelkan distribusi gabungan antara vektor $x$ sebagai observer dan $\ell$ layer hidden $h^k$ sebagai berikut:
@@ -285,7 +278,7 @@ Dimana $x=h^0, P(h^{k-1} | h^k)$ adalah distribusi kondisional untuk unit visibl
 	\centering
 	\includegraphics[width=0.3\textwidth]
 		{pics/DBN3.png}
-	\caption{Arsitektur Deep Believe Network (DBN) yang merupakan gabungan dari RBM yang dibuat bertingkat}
+	\caption{Arsitektur Deep Belief Network (DBN) yang merupakan gabungan dari RBM yang dibuat bertingkat}
 	\label{fig:dbn3}
 \end{figure}
 
@@ -301,8 +294,24 @@ Prinsip dari \textit{greedy layer-wise unsupervised training} bisa di aplikasika
 
 Pada kasus ini, akan difokuskan pada fine-tuning dengan melakukan gradien descent menggunakan klassifier logistic regression dimana digunakan untuk mengklasifikasikan input x berdasar pada output dari hidden layer $h^{(l)}$ dari DBN. Fine-tune kemudian dilakukan melalui gradien descent dari NLL fungsi costnya. Dikarenakan gradien secara supervised adalah hanya non-null untuk bobot dan bias pada hidden layer pada tiap-tiap layer, maka prosedur ini serupa dengan menerapkan initialisasi parameter dari arsitektur MLP yang deep dengan bobot dan bias dari hidden layer yang didapat pada proses training unsupervised diatas.
 
+\section{Cost}
+Cost merupakan variabel yang menggambarkan \textit{Negative Log Likelihood}. Yang memiliki bentuk persamaan sebagai berikut:
+\begin{equation}
+\frac{1}{|\mathcal{D}|} \mathcal{L} (\theta=\{W,b\}, \mathcal{D}) =
+            \frac{1}{|\mathcal{D}|} \sum_{i=0}^{|\mathcal{D}|}
+                \log(P(Y=y^{(i)}|x^{(i)}, W,b)) \\
+            \ell (\theta=\{W,b\}, \mathcal{D})
+\end{equation}
 
-\section{Alasan Melakukan Training Secara Greedy Layer-Wise}
+Dalam kode python dituliskan:
+\begin{center}
+cost = classifier.negative\_log\_likelihood(y)
+\end{center}
+
+Semakin kecil cost, menunjukkan semakin kecil error rekonstruksinya. Hal ini menunjukkan bahwa, data rekonstruksi mendekati bentuk data konstruksinya (diambil dari data training).
+
+
+\section{Training Secara Greedy Layer-Wise}
 
 Algoritma training deep learning secara greedy layer-wise terbukti bisa bekerja dengan baik, sebagai contoh 2 layer DBN dengan hidden layer $h^{(1)}$ dan $h^{(2)}$ dengan parameter bobot berurutan adalah $W^{(1)}$ dan $W^{(2)}$, \citep{hinton2006reducing} maka $\log
 p(x)$ bisa ditulis sebagai:
@@ -389,3 +398,17 @@ Kedua fungsi aktivasi yaitu tanh dan sigmoid adalah fungsi skalar ke skalar akan
 Vektor output didapatkan dengan: $o(x) = G(b^{(2)} + W^{(2)} h(x))$. Probabilitas dari keanggotaan kelas didapat dari memilih G sebagai fungsi \textit{softmax} (untuk kasus klasifikasi multi-kelas).\\
 Untuk melakukan \textit{training} MLP dilakukan \textit{learning} parameter dari model menggunakan \textit{Stochastic Gradien Descent} dengan dibagi menjadi bagian kecil-kecil atau disebut dengan \textit{minibatch}. Himpunan parameter pembelajarkan ditulis sebagai himpungan $\theta = \{W^{(2)},b^{(2)},W^{(1)},b^{(1)}\}$. Mendapatkan gradien $\partial{\ell}/\partial{\theta}$ didapatkan dengan menerapkan algoritma \textit{backpropagation} \citep{tutorial2014lisa}
 
+\section{Metode Bonferroni untuk Evaluasi}
+
+Di dalam statistik, testing hipotesis adalah berdasar pada menolak hipotesa 0 apabila kebolehjadian data yang diobservasi dibawah hipotesa 0 adalah rendah. Jika dilakukan perbandingan berganda atau dilakukan pengetesan hipotesa, maka kemungkinan untuk terjadi sebuah peristiwa yang langka menjadi meningkat, oleh karena itu, kebolehjadian untuk menolak hipotesa 0 menjadi meningkat pula ( error tipe 1 meningkat ). Oleh karena itu dibutuhkan untuk sebuah metode koreksi untuk menjaga agar error tipe I nya bisa dikoreksi.
+
+Metode koreksi Bonferroni adalah berbasis pada ide dimana jika eksperimen dilakukan untuk melakukan testing pada hipotesa sebanyak $m$, maka untuk memelihara \textit{familywise error rate (FWER)} adalah untuk melakukan testing hipotesis secara individu dengan level signifikansi $1/m$ dikalikan dengan level maksimum keseluruhan yang diinginkan.
+
+Jika level signifikansi yang diinginkan semua anggota dari test adalah $\alpha$, maka koreksi bonferroni akan melakukan testing secara individual dengan level signifikansinya adalah $\alpha/m$. Sebagai contoh jika testing percobaan $m=8$ dengan hipotesa yang diinginkan $\alpha =0.05$ maka kereksi akan melakukan testing secara individual pada hipotesis pada $\alpha =0.05/8=0.00625$ \citep{hochberg1988sharper}
+
+\subsection{Definisi}
+Diberikan $H_{{1}},...,H_{{m}}$ adalah sebuah keluarga hipotesa dan $p_{{1}},...,p_{{m}}$ adalah secara berurutan merupakan \textit{p-value}-nya. FWER adalah probabilitas untuk menolak setidaknya satu dari $H_{{i}}$; sehingga setidaknya ada satu error tipe I. Maka koreksi bonferroni menyatakan bahwa menolak hipotesa null untuk semua $p_{{i}}\leq {\frac  {\alpha }{m}}$ yang mengontrol FWER. Dibuktikan dengan :
+\begin{equation}
+FWER = P\left\{ \bigcup_{i=1}^{m_0}\left(p_{i}\leq\frac{\alpha}{m}\right)\right\} \leq\sum_{i=1}^{m_0}\left\{P\left(p_{i}\leq\frac{\alpha}{m}\right)\right\}\leq m_{0}\frac{\alpha}{m}\leq m\frac{\alpha}{m}=\alpha
+\end{equation}
+Kontrol ini tidak memerlukan asumsi tentang ketergantungan antara p-value-nya \citep{hochberg1988sharper}.

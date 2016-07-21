@@ -20,56 +20,61 @@
 \contentsline {section}{\numberline {2.2}Pemrosesan Data Microarray}{7}{section.2.2}
 \contentsline {section}{\numberline {2.3}Ekstraksi Fitur dan Seleksi Fitur Pada Penelitian Sebelumnya}{8}{section.2.3}
 \contentsline {section}{\numberline {2.4}Deep Learning}{9}{section.2.4}
-\contentsline {section}{\numberline {2.5}Energy-Based Model (EBM)}{10}{section.2.5}
+\contentsline {section}{\numberline {2.5}Energy-Based Model (EBM) Adalah Bentuk General dari Restricted Boltzman Machine (RBM)}{10}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}EBM dengan Hidden Units}{11}{subsection.2.5.1}
 \contentsline {section}{\numberline {2.6}Restricted Boltzmann Machine}{12}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}RBMs yang Menggunakan Unit Biner}{13}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Update Persamaan dengan Unit Biner}{14}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.2}Update Persamaan dengan Unit Biner}{13}{subsection.2.6.2}
 \contentsline {section}{\numberline {2.7}Sampling pada RBM}{14}{section.2.7}
 \contentsline {section}{\numberline {2.8}Contrastive Divergence (CD-k)}{15}{section.2.8}
 \contentsline {section}{\numberline {2.9}Persistent CD}{15}{section.2.9}
-\contentsline {section}{\numberline {2.10}Deep Believe Network}{16}{section.2.10}
-\contentsline {section}{\numberline {2.11}Alasan Melakukan Training Secara Greedy Layer-Wise}{17}{section.2.11}
-\contentsline {section}{\numberline {2.12}Logistic Regression}{18}{section.2.12}
-\contentsline {subsection}{\numberline {2.12.1}Model Logistic Regression}{18}{subsection.2.12.1}
-\contentsline {subsection}{\numberline {2.12.2}Mendefinisikan Lost Function dari Logistic Regression}{18}{subsection.2.12.2}
-\contentsline {section}{\numberline {2.13}Multi Layer Perceptron}{19}{section.2.13}
-\contentsline {subsection}{\numberline {2.13.1}Model MLP}{19}{subsection.2.13.1}
-\contentsline {chapter}{\numberline {3}\uppercase {Metodologi Penelitian}}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}Gambaran Umum Penelitian}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}Desain Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{23}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Perhitungan Seleksi Fitur dengan Multi-Step Ranking }{24}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{25}{section.3.3}
-\contentsline {section}{\numberline {3.4}Pengumpulan Data dan Pengolahan Awal}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}Data Profil Gen Percobaan Microarray dan Biomarker}{28}{section.3.5}
-\contentsline {section}{\numberline {3.6}Perancangan Metodologi Penelitian}{29}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Tahapan \textit {Unsupervised}}{29}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Tahapan Supervised}{31}{subsection.3.6.2}
-\contentsline {subsubsection}{\numberline {3.6.2.1}Implementasi Logistic Regression pada Layer Output}{31}{subsubsection.3.6.2.1}
-\contentsline {subsection}{\numberline {3.6.3}Tahapan Tuning Parameter}{31}{subsection.3.6.3}
-\contentsline {section}{\numberline {3.7}Melakukan Testing Arsitektur DBN}{32}{section.3.7}
-\contentsline {section}{\numberline {3.8}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised Menggunakan MLP}{32}{section.3.8}
-\contentsline {section}{\numberline {3.9}Perbandingan Hasil Perangkingan Dengan Literatur}{33}{section.3.9}
-\contentsline {section}{\numberline {3.10}Modul-modul Pendukung}{33}{section.3.10}
-\contentsline {subsection}{\numberline {3.10.1}Kelas Ekstraktor}{33}{subsection.3.10.1}
-\contentsline {subsection}{\numberline {3.10.2}Implementasi Kelas Ekstraktor di Python}{34}{subsection.3.10.2}
-\contentsline {subsection}{\numberline {3.10.3}Kelas Generator}{35}{subsection.3.10.3}
-\contentsline {subsection}{\numberline {3.10.4}Hasil Evaluasi Dengan Multi Layer Perceptron}{36}{subsection.3.10.4}
-\contentsline {chapter}{\numberline {4}\uppercase {Pembahasan}}{37}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview Metodologi}{37}{section.4.1}
-\contentsline {section}{\numberline {4.2}Hasil Percobaan DBN Dengan Setting Hyperparameter yang Berbeda}{37}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Plot Cost Percobaan 1}{39}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Plot Cost Percobaan 2}{40}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Plot Cost Percobaan 3}{41}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Hasil Penerapan Multi Step Ranking Bobot}{41}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Diagram Venn Perpotongan Percobaan 1, 2 dan 3}{41}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}Bagian Supervised Learning Dengan Multi Layers Perceptron (MLP)}{44}{section.4.4}
-\contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Literatur Pertama Bonferroni Method\citep {hochberg1988sharper}}{44}{section.4.5}
-\contentsline {section}{\numberline {4.6}Hasil Konfirmasi Dengan Literatur Kedua Harvard Cancer Center (https://ccib.mgh.harvard.edu/xavier)}{47}{section.4.6}
-\contentsline {section}{\numberline {4.7}Kendala-Kendala yang Dialami Selama Melakukan Percobaan}{48}{section.4.7}
-\contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{50}{chapter.5}
-\contentsline {section}{\numberline {5.1}Kesimpulan}{50}{section.5.1}
-\contentsline {section}{\numberline {5.2}Saran}{50}{section.5.2}
-\contentsline {chapter}{Daftar Referensi}{52}{Item.19}
+\contentsline {section}{\numberline {2.10}Deep Belief Network}{15}{section.2.10}
+\contentsline {section}{\numberline {2.11}Cost}{17}{section.2.11}
+\contentsline {section}{\numberline {2.12}Training Secara Greedy Layer-Wise}{17}{section.2.12}
+\contentsline {section}{\numberline {2.13}Logistic Regression}{18}{section.2.13}
+\contentsline {subsection}{\numberline {2.13.1}Model Logistic Regression}{18}{subsection.2.13.1}
+\contentsline {subsection}{\numberline {2.13.2}Mendefinisikan Lost Function dari Logistic Regression}{18}{subsection.2.13.2}
+\contentsline {section}{\numberline {2.14}Multi Layer Perceptron}{19}{section.2.14}
+\contentsline {subsection}{\numberline {2.14.1}Model MLP}{19}{subsection.2.14.1}
+\contentsline {section}{\numberline {2.15}Metode Bonferroni untuk Evaluasi}{20}{section.2.15}
+\contentsline {subsection}{\numberline {2.15.1}Definisi}{21}{subsection.2.15.1}
+\contentsline {chapter}{\numberline {3}\uppercase {Metodologi Penelitian}}{22}{chapter.3}
+\contentsline {section}{\numberline {3.1}Gambaran Umum Penelitian}{22}{section.3.1}
+\contentsline {section}{\numberline {3.2}Desain Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{24}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1} Desain Algoritma Multi-Step Ranking }{25}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Perhitungan Seleksi Fitur dengan Multi-Step Ranking }{26}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{27}{section.3.3}
+\contentsline {section}{\numberline {3.4}Pengumpulan Data dan Pengolahan Awal}{29}{section.3.4}
+\contentsline {section}{\numberline {3.5}Data Profil Gen Percobaan Microarray dan Biomarker}{30}{section.3.5}
+\contentsline {section}{\numberline {3.6}Perancangan Metodologi Penelitian}{31}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Tahapan \textit {Unsupervised}}{31}{subsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Cost}{33}{subsubsection.3.6.1.1}
+\contentsline {subsection}{\numberline {3.6.2}Tahapan Supervised}{33}{subsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.2.1}Implementasi Logistic Regression pada Layer Output}{33}{subsubsection.3.6.2.1}
+\contentsline {subsection}{\numberline {3.6.3}Tahapan Tuning Parameter}{34}{subsection.3.6.3}
+\contentsline {section}{\numberline {3.7}Melakukan Testing Arsitektur DBN}{34}{section.3.7}
+\contentsline {section}{\numberline {3.8}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised Menggunakan MLP}{35}{section.3.8}
+\contentsline {section}{\numberline {3.9}Perbandingan Hasil Perangkingan Dengan Literatur}{35}{section.3.9}
+\contentsline {section}{\numberline {3.10}Modul-modul Pendukung}{36}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}Kelas Ekstraktor}{36}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}Implementasi Kelas Ekstraktor di Python}{36}{subsection.3.10.2}
+\contentsline {subsection}{\numberline {3.10.3}Kelas Generator}{38}{subsection.3.10.3}
+\contentsline {subsection}{\numberline {3.10.4}Hasil Evaluasi Dengan Multi Layer Perceptron}{38}{subsection.3.10.4}
+\contentsline {chapter}{\numberline {4}\uppercase {Pembahasan}}{40}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview Metodologi}{40}{section.4.1}
+\contentsline {section}{\numberline {4.2}Hasil Percobaan DBN Dengan Setting Hyperparameter yang Berbeda}{40}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Plot Cost Percobaan 1 (Hidden = [10k, 5k, 1k, 500])}{42}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Plot Cost Percobaan 2 (Hidden = [7k, 10k, 5k, 1k])}{43}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Plot Cost Percobaan 3 (Hidden = [3k, 2k, 1k, 100])}{44}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Hasil Penerapan Multi Step Ranking Bobot}{44}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Diagram Venn Perpotongan Percobaan 1, 2 dan 3}{44}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Bagian Supervised Learning Dengan Multi Layers Perceptron (MLP)}{47}{section.4.4}
+\contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Literatur Pertama Bonferroni Method\citep {hochberg1988sharper}}{48}{section.4.5}
+\contentsline {section}{\numberline {4.6}Hasil Konfirmasi Dengan Literatur Kedua Harvard Cancer Center (https://ccib.mgh.harvard.edu/xavier)}{50}{section.4.6}
+\contentsline {section}{\numberline {4.7}Kendala-Kendala yang Dialami Selama Melakukan Percobaan}{51}{section.4.7}
+\contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Kesimpulan}{53}{section.5.1}
+\contentsline {section}{\numberline {5.2}Saran}{53}{section.5.2}
+\contentsline {chapter}{Daftar Referensi}{55}{Item.16}
 \contentsline {chapter}{LAMPIRAN}{1}{section*.47}
 \contentsline {chapter}{Lampiran 1}{2}{section*.48}

@@ -2,19 +2,19 @@
 \chapter{\babEmpat}
 %-----------------------------------------------------------------------------%
 
-Pada bab ini akan dibahas tentang hasil penelitian dari metodologi yang ada pada bab tiga, dan masalah-masalah yang dihadapi pada saat implementasinya dan pembahasannya.
+Pada bab 4 ini akan dibahas tentang hasil penelitian dari metodologi yang ada pada bab tiga, dan masalah-masalah yang dihadapi pada saat implementasinya dan pembahasannya.
 
 
 %-----------------------------------------------------------------------------%
 \section{Overview Metodologi}
 %-----------------------------------------------------------------------------%
-Model yang dihasilkan dari \textit{unsupervised learning} yang dilakukan oleh DBN menggunakan data training, harus diuji dahulu dengan dengan data validasi dan data testing, yaitu dengan cara memberikan satu layer output menggunakan \textit{logistic regression} hal ini untuk mengetahui apakah klasifikasinya lebih baik atau sebaliknya. Hasil ini berpengaruh pada proses tuning parameter (jumlah layer dan jumlah hidden unitnya) untuk didapatkan \textit{cost} yang paling optimal pada saat pre-training. Setelah dilakukan perankingan secara multi-step dari hasil percobaan yang terbaik, diperlukan pengujian apakah apakah seleksi fitur tersebut mendapatkan hasil klasifikasi yang lebih baik dengan menggunakan fitur yang telah diseleksi saja. Dengan cara membandingkan \textit{biomarker} yang ditemukan oleh algoritma multi-step rangking dibandingkan dengan algoritma yang ada di literatur yaitu metode bonferroni untuk melakukan test statistik pada data gen tersebut \citep{hochberg1988sharper}. 
+Model yang dihasilkan dari \textit{unsupervised learning} yang dilakukan oleh DBN menggunakan data training, harus diuji dahulu dengan dengan data validasi dan data testing, yaitu dengan cara memberikan satu layer output menggunakan \textit{logistic regression} hal ini untuk mengetahui apakah klasifikasinya lebih baik atau sebaliknya. Hasil ini berpengaruh pada proses tuning parameter (jumlah layer dan jumlah hidden unitnya) untuk didapatkan \textit{cost} yang paling optimal pada saat pre-training. Setelah dilakukan perankingan secara multi-step dari hasil percobaan yang terbaik, diperlukan pengujian apakah apakah seleksi fitur tersebut mendapatkan hasil klasifikasi yang lebih baik dengan menggunakan fitur yang telah diseleksi saja. Dengan cara membandingkan \textit{biomarker} yang ditemukan oleh algoritma multi-step rangking dibandingkan dengan algoritma yang ada di literatur yaitu metode \textit{bonferroni} untuk melakukan test statistik pada data gen tersebut \citep{hochberg1988sharper}. 
 
 
 %-----------------------------------------------------------------------------%
 \section{Hasil Percobaan DBN Dengan Setting Hyperparameter yang Berbeda}
 %-----------------------------------------------------------------------------%
-Untuk mendapatkan hasil yang optimal dibutuhkan banyak percobaan dan setting parameter yang berbeda-beda, mulai dari jumlah layer, jumlah hidden unit tiap layernya, learning rate, banyaknya gibbs step dan ukuran batch-nya. Oleh karena itu, dibawah adalah rekapitulasi percobaan dengan hasil terbaik dari sekian percobaan, dipilih lima percobaan yang paling baik hasilnya untuk emudian dianalisa lebih jauh. Percobaan dibawah memiliki setting parameter seperti pada daftar berikut:
+Untuk mendapatkan hasil yang optimal dibutuhkan banyak percobaan dan setting parameter yang berbeda-beda, mulai dari jumlah layer, jumlah hidden unit tiap layernya, learning rate dan ukuran batch-nya. Oleh karena itu, dibawah adalah rekapitulasi percobaan dengan hasil terbaik dari sekian percobaan, dipilih lima percobaan yang paling baik hasilnya untuk kemudian dianalisa lebih jauh. Percobaan dibawah memiliki setting parameter seperti pada daftar berikut:
 
 
 % Please add the following required packages to your document preamble:
@@ -31,8 +31,8 @@ No. & Item          & Keterangan                                                
 3   & Kanker        & 58 Pasien                                                                                                                                                 \\
 4   & Normal        & 49 Pasien                                                                                                                                                 \\
 5   & Training      & 69 Pasien                                                                                                                                                 \\
-6   & Validasi      & 14 Pasien                                                                                                                                                 \\
-7   & Testing       & 20 Pasien                                                                                                                                                 \\
+6   & Validasi      & 15 Pasien                                                                                                                                                 \\
+7   & Testing       & 23 Pasien                                                                                                                                                 \\
 8   & Epoch         & 1000 dan 2000                                                                                                                                             \\
 9   & Learning Rate & 0.01                                                                                                                                                      \\
 10  & Fitur Gen     & 22.283 Gen                                                                                                                                                \\ \bottomrule
@@ -55,8 +55,8 @@ Setelah dilakukan eksperimen secara \textit{unsupervised} diperoleh \textit{cost
  &  & 2000 & -12886.7 & -1.57877 & -6873.31 & -0.0729352 & 138 \\
 3 & \begin{tabular}[c]{@{}l@{}}{[}3000, 2000, \\ 1000, 100{]}\end{tabular} & 1000 & -12897.8 & -0.862442 & -1410.18 & -3.244 & 58 \\
  &  & 2000 & -12897.0 & -0.849616 & -1397.09 & -3.14657 & 123 \\
-4 & \begin{tabular}[c]{@{}l@{}}{[}15000, 8000, \\ 2000{]}\end{tabular} & 1000 & -12934.5 & -32.4227 & -2756.41 & - & 68 \\
-5 & \begin{tabular}[c]{@{}l@{}}{[}25000, 17000, \\ 7000{]}\end{tabular} & 1000 & -12888.1 & -12.1715 & -5446.34 & - & 72 \\ \bottomrule
+4 & \begin{tabular}[c]{@{}l@{}}{[}15000, 8000, \\ 2000{]}\end{tabular} & 1000 & -12934.5 & -32.4227 & -2756.41 & (null) & 68 \\
+5 & \begin{tabular}[c]{@{}l@{}}{[}25000, 17000, \\ 7000{]}\end{tabular} & 1000 & -12888.1 & -12.1715 & -5446.34 & (null) & 72 \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -64,7 +64,7 @@ Setelah dilakukan eksperimen secara \textit{unsupervised} diperoleh \textit{cost
 
 Tabel diatas menunjukkan bahwa dengan epoch 1000 dan 2000 costnya tidak menunjukkan perbaikan secara signifikan. Bahkan untuk beberapa kasus, hasilnya lebih buruk. Dibawah adalah plot cost untuk percobaan yang dilakukan secara \textit{greedy layer wise}, dari plot tersebut dapat dilihat bahwa cost pada epoch 700-an sudah tidak lagi membaik secara signifikan. Hal ini bisa dikarenakan oleh terbatasnya data training yang dipakai yaitu hanya 69 pasien dikarenakan oleh terbatasnya data yang didapatkan karena mahalnya percobaan microarray itu sendiri.
 
-\subsection{Plot Cost Percobaan 1}
+\subsection{Plot Cost Percobaan 1 (Hidden = [10k, 5k, 1k, 500])}
 
 \begin{figure}
 	\centering
@@ -76,7 +76,7 @@ Tabel diatas menunjukkan bahwa dengan epoch 1000 dan 2000 costnya tidak menunjuk
 
 Pada \pic~\ref{fig:percobaan1} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) dengan konfigurasi hidden [10000, 5000,1000,500] disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Juga cost pada layer 2 dan 3 memiliki ritme yang tidak stabil.
 
-\subsection{Plot Cost Percobaan 2}
+\subsection{Plot Cost Percobaan 2 (Hidden = [7k, 10k, 5k, 1k])}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
@@ -87,7 +87,7 @@ Pada \pic~\ref{fig:percobaan1} merupakan perbandingan cost dari layer 0 sampai 3
 
 Pada \pic~\ref{fig:percobaan2} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Juga cost pada layer 2 dan 3 memiliki ritme yang juga tidak stabil.
 
-\subsection{Plot Cost Percobaan 3}
+\subsection{Plot Cost Percobaan 3 (Hidden = [3k, 2k, 1k, 100])}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
@@ -95,7 +95,7 @@ Pada \pic~\ref{fig:percobaan2} merupakan perbandingan cost dari layer 0 sampai 3
 	\caption{Perbandingan Cost Pada Percobaan 3 Sampai 1000 Epoch Pada Tiap Layernya}
 	\label{fig:percobaan3}
 \end{figure}
-Pada \pic~\ref{fig:percobaan3} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Juga cost pada layer 2 dan 3 memiliki ritme yang tidak stabil.
+Pada \pic~\ref{fig:percobaan3} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) disitu bisa dilihat bahwa setelah epoch 700-an tidak terjadi perbaikan cost yang signifikan. Juga \textit{cost} pada layer 2 dan 3 memiliki ritme yang tidak stabil.
 
 Berarti dari ketiga percobaan tersebut, secara garis besar, epoch lebih dari 700-an tidak mempengaruhi perbaikan error rekonstruksinya. Hal ini bisa disebabkan karena kurangnya data training.
 
@@ -165,8 +165,7 @@ Ke-27 gen pada tabel tersebut merupakan gen yang diindikasikan memiliki pengaruh
 \section{Bagian Supervised Learning Dengan Multi Layers Perceptron (MLP)}
 %-----------------------------------------------------------------------------%
 
-
-
+Pada saat dilakukan klasifikasi pasien kanker dan normal tanpa dilakukan seleksi fitur, dikarenakan banyaknya fitur gen yang merupakan noise, maka perbandingan fitur gen dan pasien menjadi sangat lebar, oleh karena itu sangat rentan dengan masalah yang sering timbul dari teknik pembelajaran mesin yaitu \textit{overfitting}. Oleh karena itu, salah satu cara untuk menghindari overfitting adalah dengan metode seleksi fitur. \\
 Setelah dilakukan perbandingan gen biomarker yang ditemukan pada proses perankingan diatas, top 250 gen tersebut dibuat menjadi data input untuk kasus klasifikasi. Untuk di evaluasi apakah hasil klasifikasinya lebih baik dibandingkan dengan tanpa seleksi fitur.\\
 Tabel \ref{tab:tabel4.2} merupakan perbandingan error antara logistic regression yang ditempatkan pada layer akhir DBN, tanpa dilakukan seleksi fitur. Dibandingkan dengan MLP yang memiliki 1 layer hidden dan 250 hidden unit. Untuk dilakukan training ulang dan dibandingkan dengan hasil yang diperoleh dari logistic regression.
 
@@ -227,7 +226,7 @@ Percobaan 3 dibandingkan dengan metode bonferroni memiliki perpotongan kesesuaai
 %-----------------------------------------------------------------------------%
 \section{Hasil Konfirmasi Dengan Literatur Kedua Harvard Cancer Center (https://ccib.mgh.harvard.edu/xavier)}
 %-----------------------------------------------------------------------------%
-Sebanyak 27 gen yang ditemukan untuk irisan tiga percobaan terbaik, akan dilakuan review literatur lebih jauh. Menurut situs harvard cancer center, gen-gen tertentu bisa menununjukkan tingkat signifikansi gen tersebut terhadap sebuah penyakit kanker. Sebagai contoh gen yang berada pada ranking 1 pada 27 gen tersebut memiliki signifikasni yang tinggi terhadap kanker paru-paru dibandingkan dengan gen yang dipilih secara acak.
+Sebanyak 27 gen yang ditemukan untuk irisan tiga percobaan terbaik, akan dilakuan review literatur lebih jauh. Menurut situs harvard cancer center, gen-gen tertentu bisa menununjukkan tingkat signifikansi gen tersebut terhadap sebuah penyakit kanker. Gen yang berada pada ranking 1 sampai 27 tersebut memiliki signifikasni yang tinggi terhadap kanker paru-paru dibandingkan dengan gen yang dipilih secara acak.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
@@ -235,7 +234,7 @@ Sebanyak 27 gen yang ditemukan untuk irisan tiga percobaan terbaik, akan dilakua
 	\caption{Profil Ekspresi Gen TPT1 yang merupakan ranking pertama}
 	\label{fig:tpt1}
 \end{figure}
-Dari gambar bisa dilihat bahwa signifikansi gen TPT1 yang merupakan gen dengan ranking pertama memiliki signifikansi terhadap penyakit kanker paru-paru (lung cancer). Sumber profil gen didapat dari 
+Dari gambar bisa dilihat bahwa signifikansi gen TPT1 yang merupakan gen dengan ranking pertama memiliki signifikansi terhadap penyakit kanker paru-paru (lung cancer). Sumber profil gen didapat dari https://ccib.mgh.harvard.edu/xavier
 
 \begin{figure}
 	\centering
@@ -245,7 +244,7 @@ Dari gambar bisa dilihat bahwa signifikansi gen TPT1 yang merupakan gen dengan r
 	\label{fig:SFTPC}
 \end{figure}
 
-Pada dua contoh profil yang ditemukan yaitu gen TPT1 dan gen SFTPC bisa disimpulkan bahwa walaupun ekspresi gen tersebut ditemukan pada kanker paru-paru, tetapi tidak unik dan juga ditemukan di kanker-kanker yang lain misalnya leukemia, lymphoma dan sebagainya. Hal ini terjadi karena data yang dipakai adalah data kanker paru-paru saja. Sehingga menemukan biomarker yang unik pada kanker paru-paru saja.
+Pada dua contoh profil yang ditemukan yaitu gen TPT1 dan gen SFTPC bisa disimpulkan bahwa walaupun ekspresi gen tersebut ditemukan pada kanker paru-paru, tetapi tidak unik dan juga ditemukan di kanker-kanker yang lain misalnya leukemia, lymphoma dan sebagainya. Hal ini terjadi karena data yang dipakai adalah data kanker paru-paru saja. Sehingga gen yang sama bisa signifikan pada kanker-kanker lainnya dikarenakan tidak adanya data selain kanker paru-paru untuk dijadikan data trainingnya.
 %-----------------------------------------------------------------------------%
 \section{Kendala-Kendala yang Dialami Selama Melakukan Percobaan}
 %-----------------------------------------------------------------------------%

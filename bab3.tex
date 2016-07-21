@@ -55,6 +55,60 @@ Pada DBN, \textit{hidden unit} yang paling sering aktif adalah \textit{hidden un
 	\label{fig:multistep1}
 \end{figure}
 
+\subsection{ Desain Algoritma Multi-Step Ranking }
+
+
+Input : matrix yang berisi bobot dan bias \\
+Output : Matrix yang berisi index gen dan ranking nya \\
+\lstset{language=python}          % Set your language (you can change the language for each code-block optionally)
+
+\begin{lstlisting}
+# hsl_ranking = multisteprank(model, KonfigurasiLayer):
+
+ekstraktor = Ekstraktor()
+
+model = InputModel
+
+Wlayer3 = model.rbm_layers[3].W
+Wlayer2 = model.rbm_layers[2].W
+Wlayer1 = model.rbm_layers[1].W
+Wlayer0 = model.rbm_layers[0].W
+
+y3 = Wlayer3.get_value(True)
+x3 = T.fmatrix()
+x3 = y3.copy()
+
+# ranking ujung (Layer 3)
+awal3 = mtr.awal(x3)
+jml_bobot3 = mtr.jumlah_bobot(x3, awal3)
+ranking_jml_bobot3 = mtr.rank_hasil_jumlah(jml_bobot3)
+top_n3 = mtr.set_top_n(ranking_jml_bobot3,70)
+
+# ranking layer selanjutnya sampai layer = 0
+y2 = Wlayer2.get_value(True)
+x2 = y2.copy()
+awal2 = mtr.extract_top_n(top_n3)
+jml_bobot2 = mtr.jumlah_bobot(x2, awal2)
+ranking_jml_bobot2 = mtr.rank_hasil_jumlah(jml_bobot2)
+top_n2 = mtr.set_top_n(ranking_jml_bobot2,700)
+
+y1 = Wlayer1.get_value(True)
+x1 = y1.copy()
+awal1 = mtr.extract_top_n(top_n2)
+jml_bobot1 = mtr.jumlah_bobot(x1, awal1)
+ranking_jml_bobot1 = mtr.rank_hasil_jumlah(jml_bobot1)
+top_n1 = mtr.set_top_n(ranking_jml_bobot1,1500)
+
+y0 = Wlayer0.get_value(True)
+x0 = y0.copy()
+awal0 = mtr.extract_top_n(top_n1)
+jml_bobot0 = mtr.jumlah_bobot(x0, awal0)
+ranking_jml_bobot0 = mtr.rank_hasil_jumlah(jml_bobot0)
+
+\end{lstlisting}
+
+
+
 \subsection{Perhitungan Seleksi Fitur dengan Multi-Step Ranking }
 
 Contoh dibawah adalah contoh penyederhanaan dari proses multi-step ranking yang diajukan. Pada prakteknya, \textit{visible unit} dan \textit{hidden unit} memiliki jumlah yang besar. Sebagai contoh, pada kasus data kanker paru-paru yang diteliti ini memiliki fitur 22 ribu gen yang di ukur secara simultan dalam satu percobaan.
@@ -91,7 +145,7 @@ Listing 3.5: Implementasi Multistep rank Pada Model
 %-----------------------------------------------------------------------------%
 \section{Pengumpulan Data dan Pengolahan Awal}
 %-----------------------------------------------------------------------------%
-Data microarray tersedia secara bebas di geo [http://www.ncbi.nlm.nih.gov/geo/], dan dapat diunduh, untuk digunakan sebagai data penelitian. Kemudian dilakukan normalisasi standar yang sering di pakai pada data microarray, proses normalisasi ada banyak metode, dan akan digunakan satu metode standar untuk pengolahan awal microarray agar mendapatkan data konsisten dan dapat dibandingkan. Proses pengolahan awal dan normalisasi digunakan tools standar dan tersedia bebas yaitu R-Bioconductor. \\
+Data microarray tersedia secara bebas di \textit{GEO (Gene Expression Omnibus)} [http://www.ncbi.nlm.nih.gov/geo/], dan dapat diunduh, untuk digunakan sebagai data penelitian. Kemudian dilakukan normalisasi standar yang sering di pakai pada data \textit{microarray} dan yang sudah dibahas pada bab 2. Proses normalisasi ada banyak metode, dan akan digunakan satu metode standar untuk pengolahan awal microarray agar mendapatkan data konsisten dan dapat dibandingkan. Proses pengolahan awal dan normalisasi digunakan tools standar dan tersedia bebas yaitu R-Bioconductor. \\
 
 \begin{figure}
 	\centering
@@ -124,7 +178,7 @@ Definisi \textit{Biomarker} adalah sesuatu penanda yang bisa digunakan sebagai i
 %-----------------------------------------------------------------------------%
 \subsection{Tahapan \textit{Unsupervised}}
 %-----------------------------------------------------------------------------%
-Tahap \textit{unsupervised} adalah tahapan dimana model DBN ditraining secara \textit{unsupervised} dengan data training pada tiap-tiap layernya secara \textit{greedy}, artinya, proses pelatihan dilakukan secara berjenjang mulai dari layer visibel dengan hidden layer 0 dan kemudian layer ini bobotnya dibuat tetap dan digunakan sebagai input pada leyer berikutnya. Tiap layernya dihitung cost untuk kemudian diminimisasi errornya. Konsep ini disebut \textit{greedy layer-wise training} yaitu setiap layer di traning secara independen dan satu-satu mulai dari layer input yang merupakan data ekspresi gen yang sudah disesuaikan dan dinormalisasi sampai layer output. Seperti pada \pic~\ref{fig:greedy1}
+Tahap \textit{unsupervised} adalah tahapan dimana model DBN ditraining secara \textit{unsupervised} dengan data training pada tiap-tiap layernya secara \textit{greedy}, artinya, proses pelatihan dilakukan secara berjenjang mulai dari layer visibel dengan hidden layer 0 dan kemudian layer ini bobotnya dibuat tetap dan digunakan sebagai input pada leyer berikutnya. Tiap layernya dihitung \textit{cost}-nya, yang merupakan selisih dari error konstruksi dan error rekonstruksinya \citep{hinton2006fast} untuk kemudian diminimisasi errornya dengan menggunakan teknik \textit{Contrastive Divergence (CD)}. Konsep ini disebut \textit{greedy layer-wise training} yaitu setiap layer di traning secara independen dan satu-satu mulai dari layer input yang merupakan data ekspresi gen yang sudah disesuaikan dan dinormalisasi sampai layer output. Seperti pada \pic~\ref{fig:greedy1}
 
 \begin{figure}
 	\centering
@@ -144,8 +198,7 @@ Setelah layer pertama selesai di training, layer pertama dibuat \textit{fixed} d
 	\label{fig:greedy2}
 \end{figure}
 
-Pada tahapan training secara unsupervised ini dihitung cost function antara error konstruksi dibandingkan dengan error rekonstruksinya. Dalam RBM yaitu error konstruksi atau disebut error fase positif dibandingkan dengan error rekonstruksi atau error fase negatif.\\
-log-likelihood $\mathcal{L}(\theta, \mathcal{D})$ dan fungsi loss-nya sebagai NLL $\ell (\theta, \mathcal{D})$ sebagai berikut:
+Pada tahapan training secara unsupervised ini dihitung cost function antara error konstruksi dibandingkan dengan error rekonstruksinya. Dalam RBM yaitu error konstruksi atau disebut error fase positif dibandingkan dengan error rekonstruksi atau error fase negatif.\\ Fungsi cost yang digunakan pada percobaan ini adalah NLL. Dimana log-likelihood $\mathcal{L}(\theta, \mathcal{D})$ dan fungsi loss-nya sebagai NLL $\ell (\theta, \mathcal{D})$ sebagai berikut:
 
 \begin{equation}
 \begin{aligned}
@@ -158,7 +211,7 @@ log-likelihood $\mathcal{L}(\theta, \mathcal{D})$ dan fungsi loss-nya sebagai NL
 
 Menggunakan stochastic gradient $-\frac{\partial  \log p(x^{(i)})}{\partial
 \theta}$, dimana $\theta$ adalah parameter dari modelnya.\\
-Loss function merupakan negative log-likelihood dari log-likelihood model. Data dari gradien NLL kemudian memiliki bentuk yaitu:
+Loss function yang merupakan Cost adalah  negative log-likelihood dari log-likelihood model. Data dari gradien NLL kemudian memiliki bentuk yaitu:
 \begin{equation}
 - \frac{\partial  \log p(x)}{\partial \theta}
  = \frac{\partial \mathcal{F}(x)}{\partial \theta} -
@@ -166,11 +219,27 @@ Loss function merupakan negative log-likelihood dari log-likelihood model. Data 
            \frac{\partial \mathcal{F}(\tilde{x})}{\partial \theta}.
 \end{equation}
 
+\subsubsection{Cost}
+Cost merupakan variabel yang menggambarkan \textit{Negative Log Likelihood}. Yang memiliki bentuk persamaan sebagai berikut:
+\begin{equation}
+\frac{1}{|\mathcal{D}|} \mathcal{L} (\theta=\{W,b\}, \mathcal{D}) =
+            \frac{1}{|\mathcal{D}|} \sum_{i=0}^{|\mathcal{D}|}
+                \log(P(Y=y^{(i)}|x^{(i)}, W,b)) \\
+            \ell (\theta=\{W,b\}, \mathcal{D})
+\end{equation}
+
+Dalam kode python dituliskan:
+\begin{center}
+cost = classifier.negative\_log\_likelihood(y)
+\end{center}
+
+Semakin kecil cost, menunjukkan semakin kecil error rekonstruksinya. Hal ini menunjukkan bahwa, data rekonstruksi mendekati bentuk data konstruksinya (diambil dari data training).
+
 
 %-----------------------------------------------------------------------------%
 \subsection{Tahapan Supervised}
 %-----------------------------------------------------------------------------%
-Pada saat \textit{training}  secara \textit{unsupervised} dilakukan, diukur \textit{cost} yang menunjukkan perbedaan antara konstruksi dan rekonstruksi pada tiap layernyanya. Akan tetapi, hal ini hanya untuk mengetahui \textit{cost} tiap-tiap layer RBM-nya, bukan seberapa baik model dalam melakukan klasifikasi. Oleh karena itu diperlukan satu layer output yang yang berupa \textit{logistic regression} untuk mengetahui seberapa baik model dalam membedakan kelas kanker dan bukan kanker.
+Pada saat \textit{training}  secara \textit{unsupervised} dilakukan, diukur \textit{cost} yang menunjukkan perbedaan antara konstruksi dan rekonstruksi pada tiap layernyanya. Akan tetapi, hal ini hanya untuk mengetahui \textit{cost} tiap-tiap layer RBM-nya, bukan seberapa baik model dalam melakukan klasifikasi. Oleh karena itu diperlukan satu layer output yang yang berupa \textit{logistic regression} untuk mengetahui seberapa baik model dalam membedakan pasien kelas kanker dan normal.
 
 \subsubsection{Implementasi Logistic Regression pada Layer Output}
 
@@ -201,7 +270,7 @@ Proses training pada arsitektur \textit{deep learning} juga memerlukan kekuatan 
 %-----------------------------------------------------------------------------%
 \section{Melakukan Testing Arsitektur DBN}
 %-----------------------------------------------------------------------------%
-Hasil dari unsupervised learning yang dilakukan oleh DBN, akan diuji dahulu dengan dengan data testing, apakah error rekonstruksinya lebih baik. Setelah dilakukan perankingan \textit{biomarker}, diperlukan pengujian apakah apakah seleksi fitur tersebut menggambarkan hasil yang diinginkan, dengan membandingkan biomarker yang dihasilkan dengan literature. 
+Hasil dari unsupervised learning yang dilakukan oleh DBN, akan diuji dahulu dengan dengan data validasi, apakah error rekonstruksinya lebih baik seperti pada gambar \ref{fig:overview}. Setelah dilakukan perankingan \textit{biomarker}, diperlukan pengujian apakah apakah seleksi fitur tersebut menggambarkan hasil yang diinginkan, dengan membandingkan biomarker yang dihasilkan dengan literature. 
 
 
 
@@ -209,7 +278,7 @@ Hasil dari unsupervised learning yang dilakukan oleh DBN, akan diuji dahulu deng
 \section{Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised Menggunakan MLP}
 %-----------------------------------------------------------------------------%
 
-Proses evaluasi dilakukan dua kali, pertama, saat menggunakan data asli dan tidak dilakukan seleksi fitur, yang kedua setelah dilakukan seleksi fitur. Hal ini dilakukan untuk mengetahui apakah seleksi fitur tersebut bisa memperbaiki hasil klasifikasi secara signifikan dibandingkan tanpa dilakukan seleksi fitur. \\
+Proses evaluasi dilakukan dua kali, pertama, saat menggunakan data asli tanpa seleksi fitur, yang kedua setelah dilakukan seleksi fitur. Hal ini dilakukan untuk mengetahui apakah seleksi fitur tersebut bisa memperbaiki hasil klasifikasi secara signifikan dibandingkan tanpa dilakukan seleksi fitur. \\
 Evaluasi hasil hasil perankingan secara \textit{supervised} diperlukan untuk mengetahui apakah hasil perankingan tersebut memperbaiki hasil klasifikasi pasien kanker dan sehat hanya dengan menggunakan gen-gen yang dipilih berdasarkan ranking yang didapatkan.
 
 
