@@ -55,20 +55,45 @@ Pada DBN, \textit{hidden unit} yang paling sering aktif adalah \textit{hidden un
 	\label{fig:multistep1}
 \end{figure}
 
+\subsection{Perhitungan Seleksi Fitur dengan Multi-Step Ranking }
+
+Contoh dibawah adalah contoh penyederhanaan dari proses multi-step ranking yang diajukan. Pada prakteknya, \textit{visible unit} dan \textit{hidden unit} memiliki jumlah yang besar. Sebagai contoh, pada kasus data kanker paru-paru yang diteliti ini memiliki fitur 22 ribu gen yang di ukur secara simultan dalam satu percobaan.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]
+		{pics/multistep2.png}
+	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
+	\label{fig:multistep2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]
+		{pics/multistep3.png}
+	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
+	\label{fig:multistep3}
+\end{figure}
+
+Perhitungan diatas secara iteratif dilakukan mulai dari layer output mundur sampai layer input.
+
 \subsection{ Desain Algoritma Multi-Step Ranking }
 
 
 Input : matrix yang berisi bobot dan bias \\
 Output : Matrix yang berisi index gen dan ranking nya \\
+Seperti pada listing \ref{mult1}
 \lstset{language=python}          % Set your language (you can change the language for each code-block optionally)
+\lstset{
+  numbers=left,
+  firstnumber=1,
+  numberfirstline=true
+}
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=listing multi step, label=mult1]
 # hsl_ranking = multisteprank(model, KonfigurasiLayer):
-
 ekstraktor = Ekstraktor()
-
 model = InputModel
-
 Wlayer3 = model.rbm_layers[3].W
 Wlayer2 = model.rbm_layers[2].W
 Wlayer1 = model.rbm_layers[1].W
@@ -109,27 +134,7 @@ ranking_jml_bobot0 = mtr.rank_hasil_jumlah(jml_bobot0)
 
 
 
-\subsection{Perhitungan Seleksi Fitur dengan Multi-Step Ranking }
 
-Contoh dibawah adalah contoh penyederhanaan dari proses multi-step ranking yang diajukan. Pada prakteknya, \textit{visible unit} dan \textit{hidden unit} memiliki jumlah yang besar. Sebagai contoh, pada kasus data kanker paru-paru yang diteliti ini memiliki fitur 22 ribu gen yang di ukur secara simultan dalam satu percobaan.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\textwidth]
-		{pics/multistep2.png}
-	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
-	\label{fig:multistep2}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\textwidth]
-		{pics/multistep3.png}
-	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
-	\label{fig:multistep3}
-\end{figure}
-
-Perhitungan diatas secara iteratif dilakukan mulai dari layer output mundur sampai layer input.
 
 %-----------------------------------------------------------------------------%
 \section{Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}
