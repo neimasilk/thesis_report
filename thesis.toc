@@ -33,7 +33,7 @@
 \contentsline {section}{\numberline {2.12}Training Secara Greedy Layer-Wise}{18}{section.2.12}
 \contentsline {section}{\numberline {2.13}Logistic Regression}{19}{section.2.13}
 \contentsline {subsection}{\numberline {2.13.1}Model Logistic Regression}{19}{subsection.2.13.1}
-\contentsline {subsection}{\numberline {2.13.2}Mendefinisikan Lost Function dari Logistic Regression}{19}{subsection.2.13.2}
+\contentsline {subsection}{\numberline {2.13.2}Mendefinisikan Lost Function dari Logistic Regression}{20}{subsection.2.13.2}
 \contentsline {section}{\numberline {2.14}Multi Layer Perceptron}{20}{section.2.14}
 \contentsline {subsection}{\numberline {2.14.1}Model MLP}{20}{subsection.2.14.1}
 \contentsline {section}{\numberline {2.15}Metode Bonferroni untuk Evaluasi}{21}{section.2.15}

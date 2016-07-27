@@ -295,20 +295,22 @@ Prinsip dari \textit{greedy layer-wise unsupervised training} bisa di aplikasika
 Pada kasus ini, akan difokuskan pada fine-tuning dengan melakukan gradien descent menggunakan klassifier logistic regression dimana digunakan untuk mengklasifikasikan input x berdasar pada output dari hidden layer $h^{(l)}$ dari DBN. Fine-tune kemudian dilakukan melalui gradien descent dari NLL fungsi costnya. Dikarenakan gradien secara supervised adalah hanya non-null untuk bobot dan bias pada hidden layer pada tiap-tiap layer, maka prosedur ini serupa dengan menerapkan initialisasi parameter dari arsitektur MLP yang deep dengan bobot dan bias dari hidden layer yang didapat pada proses training unsupervised diatas.
 
 \section{Cost}
-Cost merupakan variabel yang menggambarkan \textit{Negative Log Likelihood}. Yang memiliki bentuk persamaan sebagai berikut:
+Melakukang \textit{learning} pamameter model dengan cara meminimalisasi \textit{Lost Function}. Sangat umum digunakan minimisasi \textit{negative log likelihood (NLL)} ini yang ekivalen dengan memaksimalkan likelihood dari data set $\cal{D}$ pada model yang diparameterkan oleh $\theta$. Definisi dari likelihood $\cal{L}$ dan loss $\ell$ maka:
 \begin{equation}
-\frac{1}{|\mathcal{D}|} \mathcal{L} (\theta=\{W,b\}, \mathcal{D}) =
-            \frac{1}{|\mathcal{D}|} \sum_{i=0}^{|\mathcal{D}|}
-                \log(P(Y=y^{(i)}|x^{(i)}, W,b)) \\
-            \ell (\theta=\{W,b\}, \mathcal{D})
+\begin{aligned}
+\mathcal{L} (\theta=\{W,b\}, \mathcal{D}) =
+  \sum_{i=0}^{|\mathcal{D}|} \log(P(Y=y^{(i)}|x^{(i)}, W,b)) \\
+\ell (\theta=\{W,b\}, \mathcal{D}) = - \mathcal{L} (\theta=\{W,b\}, \mathcal{D})
+\end{aligned}
 \end{equation}
+Untuk meminimisasi, digunakan \textit{stochastic gradient descen with minibatches (MSGD)} \citep{hinton2006fast}.
 
 Dalam kode python dituliskan:
 \begin{center}
 cost = classifier.negative\_log\_likelihood(y)
 \end{center}
 
-Semakin kecil cost, menunjukkan semakin kecil error rekonstruksinya. Hal ini menunjukkan bahwa, data rekonstruksi mendekati bentuk data konstruksinya (diambil dari data training).
+Cost merupakan variabel yang menggambarkan \textit{Negative Log Likelihood}. Semakin kecil cost, menunjukkan semakin kecil error rekonstruksinya. Hal ini menunjukkan bahwa data rekonstruksi mendekati bentuk data asli yang diambil dari data training.
 
 
 \section{Training Secara Greedy Layer-Wise}
