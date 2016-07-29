@@ -2,7 +2,7 @@
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
 
-Penelitian ini dibagi menjadi empat tahap: (1) Mendapatkan data microarray dan pengolahan awal; (2) Perancangan algoritma; (3) Melakukan eksperimen untuk mendapatkan \textit{hyperparameter} yang optimal. Kemudian dilanjutkan dengan  testing dan evaluasi. Gambaran umum dari penelitian ini seperti pada \pic~\ref{fig:overview}
+Penelitian ini dibagi menjadi empat tahap: (1) Mendapatkan data microarray dan pengolahan awal; (2) Perancangan algoritma; (3) Melakukan eksperimen untuk mendapatkan \textit{hyperparameter} yang optimal. (4) Penerapan metode \textit{Multi Step Ranking} Kemudian dilanjutkan dengan  testing dan evaluasi \textit{biomarker} yang didapatkan. Gambaran umum dari penelitian ini seperti pada \pic~\ref{fig:overview}
 
 
 
@@ -55,34 +55,89 @@ Pada DBN, \textit{hidden unit} yang paling sering aktif adalah \textit{hidden un
 	\label{fig:multistep1}
 \end{figure}
 
-\subsection{Perhitungan Seleksi Fitur dengan Multi-Step Ranking }
+\subsection{Seleksi Fitur dengan Multi-Step Ranking }
 
-Contoh dibawah adalah contoh penyederhanaan dari proses multi-step ranking yang diajukan. Pada prakteknya, \textit{visible unit} dan \textit{hidden unit} memiliki jumlah yang besar. Sebagai contoh, pada kasus data kanker paru-paru yang diteliti ini memiliki fitur 22 ribu gen yang di ukur secara simultan dalam satu percobaan.
+Contoh dibawah adalah ilustrasi dari proses multi-step ranking yang diajukan. Pada prakteknya, \textit{visible unit} yang mewakili fitur dan \textit{hidden unit} memiliki jumlah yang besar. Sebagai contoh, pada kasus data kanker paru-paru yang diteliti ini memiliki fitur 22 ribu gen yang diukur secara simultan dalam satu percobaan. \\
+Diberikan sebuah model DBN seperti gambar \ref{fig:multistep2} dengan $i$ adalah hidden unit layer terakhir dari model yang telah ditraining secara \textit{unsupervised}. $h$ adalah hidden unit yang berada diantara layer akhir dan layer visibel yang dilambangkan dengan $v$. Model ini memiliki 4 fitur yang dilambangkan dengan $v_i$, dua layer hidden yaitu layer 0 dan layer 1. Bobot $w$ pada layer 0 dilambangkan dengan $w'_{ij}$ dan bobot pada layer 1 dilambangkan dengan $w''_{ij}$.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\textwidth]
+	\includegraphics[width=0.4\textwidth]
 		{pics/multistep2.png}
 	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
 	\label{fig:multistep2}
 \end{figure}
 
+Selanjutnya diberikan $w$ adalah bobot dengan nilai yang merupakan hasil dari training model. $w'_{ij}$ dan $w''_{ij}$ menunjukkan $w$ yang mewakili tiap-tiap layernya. Sebagai contoh, $w'_{12}$ adalah bobot pada layer 0 yang terhubung pada $h_1$ dan $v_2$.\\
+Maka step 1 adalah sebagai berikut:\\
+Perhitungan dimulai dari layer akhir ($i$) mundur sampai layer visibel ($v$). Dengan persamaan:
+\begin{equation}
+\begin{aligned}
+i_1 &= w''_{11}h_1+w''_{12}h_2+w''_{13}h_3 \\
+i_2 &= w''_{21}h_1+w''_{22}h_2+w''_{23}h_3 \\
+\end{aligned}
+\label{eqmult1}
+\end{equation}
+Pada persamaan \ref{eqmult1} diatas $h$ adalah hidden unit yang bernilai biner (0 atau 1) tergantung dari model yang dihasilkan oleh proses training \textit{unsupervised} sebelumnya.\\
+Proses selanjutnya adalah meranking hasil perhitungan agregat bobot dari persamaan \ref{eqmult1} menjadi:
+\begin{equation}
+\begin{aligned}
+Rank_{h_{(1)}} &= w''_{11}+w''_{21} \\
+Rank_{h_{(2)}} &= w''_{12}+w''_{22} \\
+Rank_{h_{(3)}} &= w''_{13}+w''_{23} \\
+\end{aligned}
+\label{eqmult2}
+\end{equation}
+
+Hasil ranking $h$ dilambangkan dengan $Rank_{h_{(index)}}$ diranking mulai dari yang terbesar sampai terkecil untuk didapatkan agregasi bobotnya. Agregasi ini menunjukkan seberapa sering hiden unit tersebut aktif. Oleh karena itu, ranking tertinggi menunjukkan hidden tersebut sering aktif. \\ 
+Selanjutnya pada contoh perhitungan pada \ref{eqmult2} didapatkan ranking $h_1$ adalah ranking terendah, maka perhitungan $h_1$ dieliminasi. Sehingga step selanjutnya menjadi sebagai berikut (step 2 dan seterusnya sampai pada layer visibel):
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\textwidth]
+	\includegraphics[width=0.4\textwidth]
 		{pics/multistep3.png}
-	\caption{Contoh Perhitungan tahap pertama dimulai dari top hidden unit }
+	\caption{Eliminasi h1 dikarenakan tidak dalam top 2, eliminasi juga bobot yang terhubung dengan h1 }
 	\label{fig:multistep3}
 \end{figure}
+Eliminasi $h_1$ karena unit ini merupakan tidak masuk pada ranking treshold misalnya diambil top 2. Maka:
+\begin{equation}
+\begin{aligned}
+h_2 &= w'_{21}v_1+w'_{22}v_2+w'_{23}v_3+w'_{24}v4 \\
+h_3 &= w'_{31}v_1+w'_{32}v_2+w'_{33}v_3+w'_{34}v4 \\
+\end{aligned}
+\label{eqmult3}
+\end{equation}
+Pada saat proses perankingan selanjutnya, semua bobot yang terhubung dengan $h_1$ dieliminasi sehingga proses perankingannya tidak menyertakan bobot tersebut. Sehingga proses ranking selanjutnya menjadi:
+\begin{equation}
+\begin{aligned}
+Rank_{v_{(1)}} &= w'_{21}+w'_{31} \\
+Rank_{v_{(2)}} &= w'_{22}+w'_{32} \\
+Rank_{v_{(3)}} &= w'_{23}+w'_{33} \\
+Rank_{v_{(4)}} &= w'_{24}+w'_{34} \\
+\end{aligned}
+\label{eqmult4}
+\end{equation}
+Bobot $w'$ yang dieliminasi adalah $w'_{11},w'_{12},w'_{13},w'_{14}$ karena terhubung dengan hidden $h_1$ yang telah dieliminasi. \\
 
 Perhitungan diatas secara iteratif dilakukan mulai dari layer output mundur sampai layer input.
+\newpage
 
 \subsection{ Desain Algoritma Multi-Step Ranking }
+Pada listing \ref{mult1} adalah contoh implementasi perhitungan multi-step ranking pada sebuah model dengan konfigurasi hidden [10000,5000,1000,500] dengan layer sebanyak 4 dan akan diranking mundur dari layer ujung dengan 500 hidden unit sampai pada layer visibel. Diberikan parameter input sebagai berikut:
+\begin{itemize}
+\item \textbf{model} : model yang akan diranking.
+\item \textbf{KonfigurasiLayer} : Konfigurasi layer dari model misalnya [10000,5000,1000,500].
+\end{itemize}
 
-
-Input : matrix yang berisi bobot dan bias \\
-Output : Matrix yang berisi index gen dan ranking nya \\
-Seperti pada listing \ref{mult1}
+Pada listing \ref{mult1} diberikan fungsi-fungsi pada modul mtr yang merupakan implementasi dari algoritma multi-step ranking sebagai berikut:
+\begin{itemize}
+\item \textbf{mtr.awal} : Mengambil Nilai ujung layer.
+\item \textbf{mtr.jumlah\_bobot} : menghitung agregasi bobot seperti pada persamaan \ref{eqmult1}
+\item \textbf{mtr.rank\_hasil\_jumlah} : proses perankingan seperti pada persamaan \ref{eqmult2}
+\item \textbf{mtr.set\_top\_n} : adalah proses eliminasi bobot yang tidak masuk dalam top n ranking, seperti pada persamaan \ref{eqmult3}.
+\end{itemize}
+Untuk detail implementasi dari fungsi-fungsi diatas, silahkan lihat lampiran 2. Maka algoritma untuk meranking model dengan konfigurasi hidden [10000,5000,1000,500] adalah seperti pada listing \ref{mult1}. 
+\newpage
 \lstset{language=python}          % Set your language (you can change the language for each code-block optionally)
 \lstset{
   numbers=left,
@@ -90,7 +145,7 @@ Seperti pada listing \ref{mult1}
   numberfirstline=true
 }
 
-\begin{lstlisting}[caption=listing multi step, label=mult1]
+\begin{lstlisting}[caption=listing multi step, label=mult1,frame=single, basicstyle=\small]
 # hsl_ranking = multisteprank(model, KonfigurasiLayer):
 ekstraktor = Ekstraktor()
 model = InputModel
@@ -132,20 +187,9 @@ ranking_jml_bobot0 = mtr.rank_hasil_jumlah(jml_bobot0)
 
 \end{lstlisting}
 
+Pada baris 4-11 dilakukan initialisasi awal variabel-variabel yang diperlukan. Pada baris 14-17 dilakukan perhitungan multi-step ranking pada posisi ujung model, seperti pada contoh perhitungan pada persamaan \ref{eqmult1}. Demikian seterusnya perhitungan mundur sampai dengan layer visibelnya pada baris selanjutnya (19-38). Pada contoh diatas konfigurasi layernya adalah [10000,5000,1000,500] dan berturut-turut diranking dengan konfigurasi ranking dengan ranking [250,1500,700,70] untuk ranking pada layer 0 yang merupakan layer pertama (tetapi proses perankingannya terakhir) tidak disimpan kedalam sebuah variabel karena langsung digunakan sebagai output dengan ranking top 250. Untuk implementasi detail fungsi-fungsi dan implementasi unit testingnya bisa dilihat pada lampiran 2.
 
 
-
-
-%-----------------------------------------------------------------------------%
-\section{Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}
-%-----------------------------------------------------------------------------%
-Implementasi multi-step ranking dengan menggunakan python:\\
-Listing 3.4 : Implementasi Multi-Step Ranking di python
-\lstinputlisting[language=python, frame=single, basicstyle=\tiny]{snip/multistep_rank.py}
-
-Contoh implementasi multistep rank pada model yang disimpan pada file: \\
-Listing 3.5: Implementasi Multistep rank Pada Model
-\lstinputlisting[language=python, frame=single, basicstyle=\tiny]{snip/extractmodel.py}
 
 %-----------------------------------------------------------------------------%
 \section{Pengumpulan Data dan Pengolahan Awal}
@@ -165,11 +209,11 @@ Data microarray tersedia secara bebas di \textit{GEO (Gene Expression Omnibus)} 
 \section{Data Profil Gen Percobaan Microarray dan Biomarker}
 %-----------------------------------------------------------------------------%
 
-Definisi \textit{Biomarker} adalah sesuatu penanda yang bisa digunakan sebagai indikator suatu penyakit dari pasien. [http://www.biomarker.co.uk/whatisabiomarkers.html] Sebagai contoh, untuk mendiagnosa kanker paru-paru, hanya dibutuhkan 26 ekspresi gen saja. Gen yang paling informatif ini disebut dengan Biomarker (Bing, 2006). Pada profil gen GSE10072 yang merupakan kanker paru-paru, menurut  \citep{belinsky2004gene} ada 26 gen yang paling berpengaruh dari 22.283 gen yang diteliti secara bersamaan, seperti ditunjukkan pada \pic~\ref{fig:biomarker} yang merupakan contoh dari \textit{biomarker} kanker paru-paru.
+Definisi \textit{Biomarker} adalah sesuatu penanda yang bisa digunakan sebagai indikator suatu penyakit dari pasien. [http://www.biomarker.co.uk/whatisabiomarkers.html] Sebagai contoh, untuk mendiagnosa kanker paru-paru, hanya dibutuhkan 26 ekspresi gen saja. Gen yang paling informatif ini disebut dengan Biomarker (Bing, 2006). Pada profil gen GSE10072 yang merupakan kanker paru-paru, menurut  \cite{belinsky2004gene} ada 26 gen yang paling berpengaruh dari 22.283 gen yang diteliti secara bersamaan, seperti ditunjukkan pada \pic~\ref{fig:biomarker} yang merupakan contoh dari \textit{biomarker} kanker paru-paru.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]
+	\includegraphics[width=1.1\textwidth]
 		{pics/biomarker.png}
 	\caption{Contoh 26 Gen Biomarker Kanker Paru-paru GSE10072 \citep{landi2008gene}}
 	\label{fig:biomarker}
@@ -314,6 +358,7 @@ Untuk melakukan pengolahan pengolahan awal, didevelop sebuat kelas yang bernama 
 	\label{fig:preproses}
 \end{figure}
 
+\newpage
 \subsection{Implementasi Kelas Ekstraktor di Python}
 Listing 4.1: Ekstraksi dataset untuk disesuaikan dengan struktur data modul dbn.py
 \lstinputlisting[language=python, frame=single, basicstyle=\tiny]{snip/ekstrak_csv.py}

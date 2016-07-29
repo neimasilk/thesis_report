@@ -64,7 +64,7 @@ Setelah dilakukan eksperimen secara \textit{unsupervised} diperoleh \textit{cost
 
 Tabel diatas menunjukkan bahwa dengan epoch 1000 dan 2000 costnya tidak menunjukkan perbaikan secara signifikan. Bahkan untuk beberapa kasus, hasilnya lebih buruk. Dibawah adalah plot cost untuk percobaan yang dilakukan secara \textit{greedy layer wise}, dari plot tersebut dapat dilihat bahwa cost pada epoch 700-an sudah tidak lagi membaik secara signifikan. Hal ini bisa dikarenakan oleh terbatasnya data training yang dipakai yaitu hanya 69 pasien dikarenakan oleh terbatasnya data yang didapatkan karena mahalnya percobaan microarray itu sendiri.
 
-\subsection{Plot Cost Percobaan 1 (Hidden = [10k, 5k, 1k, 500])}
+\subsection{Plot Cost Percobaan 1 (Hidden = [10000, 5000, 1000, 500])}
 
 \begin{figure}
 	\centering
@@ -76,7 +76,7 @@ Tabel diatas menunjukkan bahwa dengan epoch 1000 dan 2000 costnya tidak menunjuk
 
 Pada \pic~\ref{fig:percobaan1} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) dengan konfigurasi hidden [10000, 5000,1000,500] disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Juga cost pada layer 2 dan 3 memiliki ritme yang tidak stabil.
 
-\subsection{Plot Cost Percobaan 2 (Hidden = [7k, 10k, 5k, 1k])}
+\subsection{Plot Cost Percobaan 2 (Hidden = [7000, 10000, 5000, 1000])}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
@@ -85,9 +85,9 @@ Pada \pic~\ref{fig:percobaan1} merupakan perbandingan cost dari layer 0 sampai 3
 	\label{fig:percobaan2}
 \end{figure}
 
-Pada \pic~\ref{fig:percobaan2} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Juga cost pada layer 2 dan 3 memiliki ritme yang juga tidak stabil.
+Pada \pic~\ref{fig:percobaan2} merupakan perbandingan cost dari layer 0 sampai 3 (4 layer) disitu bisa dilihat bahwa setelah epoch 500 tidak terjadi perbaikan cost yang signifikan. Demikian juga denga cost pada layer 2 dan 3 memiliki ritme yang tidak stabil.
 
-\subsection{Plot Cost Percobaan 3 (Hidden = [3k, 2k, 1k, 100])}
+\subsection{Plot Cost Percobaan 3 (Hidden = [3000, 2000, 1000, 100])}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
@@ -234,15 +234,17 @@ Sebanyak 27 gen yang ditemukan untuk irisan tiga percobaan terbaik, akan dilakua
 	\caption{Profil Ekspresi Gen TPT1 yang merupakan ranking pertama}
 	\label{fig:tpt1}
 \end{figure}
-Dari gambar bisa dilihat bahwa signifikansi gen TPT1 yang merupakan gen dengan ranking pertama memiliki signifikansi terhadap penyakit kanker paru-paru (lung cancer). Sumber profil gen didapat dari https://ccib.mgh.harvard.edu/xavier
+Dari gambar bisa dilihat bahwa signifikansi gen TPT1 yang merupakan gen dengan ranking pertama memiliki signifikansi terhadap penyakit kanker paru-paru (lung cancer). Sumber profil gen didapat dari https://ccib.mgh.harvard.edu/xavier \\
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]
 		{pics/38691_s_at_profil.png}
-	\caption{Profil Ekspresi Gen TPT1 yang merupakan ranking pertama}
+	\caption{Profil Ekspresi Gen SFTPC yang merupakan salah satu gen biomarker yang ditemukan}
 	\label{fig:SFTPC}
 \end{figure}
+
+Pada gen SFTPC pada gambar \ref{fig:SFTPC} bisa dilihat signifikansi yang tinggi terhadap profil paru-paru dibandingkan dengan kanker-kanker yang lainnya. Walaupun tidak semua biomarker yang ditemukan oleh metode ini memiliki keunikan terhadap kanker paru-paru, akan tetapi secara garis besar, ke-27 gen tersebut memiliki signifikansi yang tinggi terhadap profil gen yang berhubungan dengan kanker paru-paru.\\
 
 Pada dua contoh profil yang ditemukan yaitu gen TPT1 dan gen SFTPC bisa disimpulkan bahwa walaupun ekspresi gen tersebut ditemukan pada kanker paru-paru, tetapi tidak unik dan juga ditemukan di kanker-kanker yang lain misalnya leukemia, lymphoma dan sebagainya. Hal ini terjadi karena data yang dipakai adalah data kanker paru-paru saja. Sehingga gen yang sama bisa signifikan pada kanker-kanker lainnya dikarenakan tidak adanya data selain kanker paru-paru untuk dijadikan data trainingnya.
 %-----------------------------------------------------------------------------%

@@ -257,7 +257,7 @@ Contrastive Divergence(CD) menggunakan trik untuk mempercepat proses sampling: D
 
 \section{Persistent CD}
 
-Persistent CD (P-CD) [Tieleman08] menggunakan pendekatan lain untuk mensampling $p(v,h)$. Hal ini bergantung hanya pada Markov chain tunggal, yang memiliki kondisi yang persisten (dimana, tidak melakukan restart chain pada setiap sampel yang terobservasi). Pada setiap umpdate parameter, akan di ekstraksi sampel baru dengan penjalankan chain pada langkah ke-$k$. Kondisi chain akan dipertahankan pada update selanjutnya.\\
+Persistent CD (P-CD) \citep{bengio2007greedy} menggunakan pendekatan lain untuk mensampling $p(v,h)$. Hal ini bergantung hanya pada Markov chain tunggal, yang memiliki kondisi yang persisten (dimana, tidak melakukan restart chain pada setiap sampel yang terobservasi). Pada setiap umpdate parameter, akan di ekstraksi sampel baru dengan penjalankan chain pada langkah ke-$k$. Kondisi chain akan dipertahankan pada update selanjutnya.\\
 Intuisinya adalah jika update parameternya cukup kecil dibaningkan dengan rate campuran dari Markov Chain, maka hal ini bisa mengejar perubahan modelnya.
 
 
@@ -283,7 +283,7 @@ Dimana $x=h^0, P(h^{k-1} | h^k)$ adalah distribusi kondisional untuk unit visibl
 \end{figure}
 
 
-Prinsip dari \textit{greedy layer-wise unsupervised training} bisa di aplikasikan pada DBN dengan RBM sebagai bagian pada tiap layernya [hinton] [bengio]. Pada prinsipnya prosesnya adalah sebagai berikut:
+Prinsip dari \textit{greedy layer-wise unsupervised training} bisa di aplikasikan pada DBN dengan RBM sebagai bagian pada tiap layernya \citep{bengio2007greedy}. Pada prinsipnya prosesnya adalah sebagai berikut:
 \begin{enumerate}
 \item Latih layer pertama ssebagai RBM yang memodelkan input $x = h^{(0)}$ sebagai visible layernya.
 \item Gunakan layer pertama untuk mendapatkan representasi input yang digunakan sebagai data untuk layer kedua. Ada dua solusi yang sama. Representasi ini bisa dipilih sebagai rata-rata dari aktivasi $p(h^{(1)}=1|h^{(0)})$ atau sampel dari $p(h^{(1)}|h^{(0)})$.
@@ -325,7 +325,7 @@ p(x)$ bisa ditulis sebagai:
 \label{eq:equ2}
 \end{equation}
 
-$KL(Q(h^{(1)}|x) || p(h^{(1)}|x))$ merepresentasikan KL divergence antara posterior $Q(h^{(1)}|x)$ dari RBM pertama jika hal ini sendirian, dan probabilitas $p(h^{(1)}|x)$ untuk layer sayng sama tapi didifinisikan oleh keseluruhan DBN (sebagai contoh, perhitungan prior $p(h^{(1)},h^{(2)}$) didefinisikan sebagai top-level RBM). $H_{Q(h^{(1)}|x)}$ adalah entropy dari distribusi $Q(h^{(1)}|x)$.\\
+$KL(Q(h^{(1)}|x) || p(h^{(1)}|x))$ merepresentasikan KL divergence antara posterior $Q(h^{(1)}|x)$ dari RBM pertama jika hal ini sendirian, dan probabilitas $p(h^{(1)}|x)$ untuk layer yang sama tetapi didifinisikan oleh keseluruhan DBN (sebagai contoh, perhitungan prior $p(h^{(1)},h^{(2)}$) didefinisikan sebagai top-level RBM). $H_{Q(h^{(1)}|x)}$ adalah entropy dari distribusi $Q(h^{(1)}|x)$.\\
 Hal ini bisa ditunjukkan bahwa jika diinitialisasi kedua layer hidden sehingga $W^{(2)}={W^{(1)}}^T, Q(h^{(1)}|x)=p(h^{(1)}|x)$ dan KL divergence nya adalah null. Maka jika di lakukan learning pada level awal RBM dan kemudian parameter $ W^{(1)}$ dibuat tetap, kemudian dilakukan optimasi pada persamaan \ref{eq:equ2} terhadap $W^{(2)}$ bisa meningkatkan likelihood dari $p(x)$.
 Jika diisolasi hanya pada $W^{(2)}$ sehinggi didapatkan:
 

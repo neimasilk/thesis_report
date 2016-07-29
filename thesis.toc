@@ -41,37 +41,36 @@
 \contentsline {chapter}{\numberline {3}\uppercase {Metodologi Penelitian}}{23}{chapter.3}
 \contentsline {section}{\numberline {3.1}Gambaran Umum Penelitian}{23}{section.3.1}
 \contentsline {section}{\numberline {3.2}Desain Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{25}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Perhitungan Seleksi Fitur dengan Multi-Step Ranking }{26}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2} Desain Algoritma Multi-Step Ranking }{27}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Implementasi Metode Perangkingan Bobot Secara Multi Step Untuk Mendapatkan Gen Biomarker}{28}{section.3.3}
-\contentsline {section}{\numberline {3.4}Pengumpulan Data dan Pengolahan Awal}{30}{section.3.4}
-\contentsline {section}{\numberline {3.5}Data Profil Gen Percobaan Microarray dan Biomarker}{31}{section.3.5}
-\contentsline {section}{\numberline {3.6}Perancangan Metodologi Penelitian}{32}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Tahapan \textit {Unsupervised}}{32}{subsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.1.1}Cost}{34}{subsubsection.3.6.1.1}
-\contentsline {subsection}{\numberline {3.6.2}Tahapan Supervised}{34}{subsection.3.6.2}
-\contentsline {subsubsection}{\numberline {3.6.2.1}Implementasi Logistic Regression pada Layer Output}{34}{subsubsection.3.6.2.1}
-\contentsline {subsection}{\numberline {3.6.3}Tahapan Tuning Parameter}{35}{subsection.3.6.3}
-\contentsline {section}{\numberline {3.7}Melakukan Testing Arsitektur DBN}{35}{section.3.7}
-\contentsline {section}{\numberline {3.8}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised Menggunakan MLP}{36}{section.3.8}
-\contentsline {section}{\numberline {3.9}Perbandingan Hasil Perangkingan Dengan Literatur}{36}{section.3.9}
-\contentsline {section}{\numberline {3.10}Modul-modul Pendukung}{37}{section.3.10}
-\contentsline {subsection}{\numberline {3.10.1}Kelas Ekstraktor}{37}{subsection.3.10.1}
-\contentsline {subsection}{\numberline {3.10.2}Implementasi Kelas Ekstraktor di Python}{37}{subsection.3.10.2}
-\contentsline {subsection}{\numberline {3.10.3}Kelas Generator}{39}{subsection.3.10.3}
-\contentsline {subsection}{\numberline {3.10.4}Hasil Evaluasi Dengan Multi Layer Perceptron}{39}{subsection.3.10.4}
+\contentsline {subsection}{\numberline {3.2.1}Seleksi Fitur dengan Multi-Step Ranking }{26}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2} Desain Algoritma Multi-Step Ranking }{29}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Pengumpulan Data dan Pengolahan Awal}{31}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data Profil Gen Percobaan Microarray dan Biomarker}{31}{section.3.4}
+\contentsline {section}{\numberline {3.5}Perancangan Metodologi Penelitian}{32}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Tahapan \textit {Unsupervised}}{32}{subsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.1.1}Cost}{34}{subsubsection.3.5.1.1}
+\contentsline {subsection}{\numberline {3.5.2}Tahapan Supervised}{34}{subsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.2.1}Implementasi Logistic Regression pada Layer Output}{35}{subsubsection.3.5.2.1}
+\contentsline {subsection}{\numberline {3.5.3}Tahapan Tuning Parameter}{35}{subsection.3.5.3}
+\contentsline {section}{\numberline {3.6}Melakukan Testing Arsitektur DBN}{36}{section.3.6}
+\contentsline {section}{\numberline {3.7}Evaluasi Hasil Perangkingan Dengan Klasifikasi Secara Supervised Menggunakan MLP}{36}{section.3.7}
+\contentsline {section}{\numberline {3.8}Perbandingan Hasil Perangkingan Dengan Literatur}{36}{section.3.8}
+\contentsline {section}{\numberline {3.9}Modul-modul Pendukung}{37}{section.3.9}
+\contentsline {subsection}{\numberline {3.9.1}Kelas Ekstraktor}{37}{subsection.3.9.1}
+\contentsline {subsection}{\numberline {3.9.2}Implementasi Kelas Ekstraktor di Python}{38}{subsection.3.9.2}
+\contentsline {subsection}{\numberline {3.9.3}Kelas Generator}{39}{subsection.3.9.3}
+\contentsline {subsection}{\numberline {3.9.4}Hasil Evaluasi Dengan Multi Layer Perceptron}{40}{subsection.3.9.4}
 \contentsline {chapter}{\numberline {4}\uppercase {Pembahasan}}{41}{chapter.4}
 \contentsline {section}{\numberline {4.1}Overview Metodologi}{41}{section.4.1}
 \contentsline {section}{\numberline {4.2}Hasil Percobaan DBN Dengan Setting Hyperparameter yang Berbeda}{41}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Plot Cost Percobaan 1 (Hidden = [10k, 5k, 1k, 500])}{43}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Plot Cost Percobaan 2 (Hidden = [7k, 10k, 5k, 1k])}{44}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Plot Cost Percobaan 3 (Hidden = [3k, 2k, 1k, 100])}{45}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.1}Plot Cost Percobaan 1 (Hidden = [10000, 5000, 1000, 500])}{43}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Plot Cost Percobaan 2 (Hidden = [7000, 10000, 5000, 1000])}{44}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Plot Cost Percobaan 3 (Hidden = [3000, 2000, 1000, 100])}{45}{subsection.4.2.3}
 \contentsline {section}{\numberline {4.3}Hasil Penerapan Multi Step Ranking Bobot}{45}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Diagram Venn Perpotongan Percobaan 1, 2 dan 3}{45}{subsection.4.3.1}
 \contentsline {section}{\numberline {4.4}Bagian Supervised Learning Dengan Multi Layers Perceptron (MLP)}{48}{section.4.4}
 \contentsline {section}{\numberline {4.5}Hasil Evaluasi Dengan Literatur Pertama Bonferroni Method\citep {hochberg1988sharper}}{49}{section.4.5}
 \contentsline {section}{\numberline {4.6}Hasil Konfirmasi Dengan Literatur Kedua Harvard Cancer Center (https://ccib.mgh.harvard.edu/xavier)}{51}{section.4.6}
-\contentsline {section}{\numberline {4.7}Kendala-Kendala yang Dialami Selama Melakukan Percobaan}{52}{section.4.7}
+\contentsline {section}{\numberline {4.7}Kendala-Kendala yang Dialami Selama Melakukan Percobaan}{53}{section.4.7}
 \contentsline {chapter}{\numberline {5}\uppercase {Kesimpulan dan Saran}}{54}{chapter.5}
 \contentsline {section}{\numberline {5.1}Kesimpulan}{54}{section.5.1}
 \contentsline {section}{\numberline {5.2}Saran}{54}{section.5.2}
